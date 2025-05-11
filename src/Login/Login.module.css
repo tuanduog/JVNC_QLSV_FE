@@ -1,0 +1,17 @@
+.main {
+  min-height: 100vh;
+  background-image: url('F:\BTL_CODE\BTL_JAVANC\student-management-frontend\src\assets\—Pngtree—graduation celebration with students throwing_16274815.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.85rem 1rem !important;
+}
+
