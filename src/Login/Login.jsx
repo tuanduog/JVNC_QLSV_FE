@@ -1,8 +1,27 @@
 import React from "react";
 import styles from '../Login/Login.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+    const [masv, setMasv] = useState("");
+    const [matkhau, setMatkhau] = useState("");
+
+    const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+        const user = { masv: masv, matkhau: matkhau };
+        const res = await axios.post("http://localhost:8080/auth/login", user);
+        console.log("Token nhận được:", res.data.token);
+        localStorage.setItem("token", res.data.token);
+        alert("Đăng nhập thành công!");
+    } catch (err) {
+      console.error(err);
+
+    }
+  };
     return (
         <div className={styles.main}>
             <div className="container">
@@ -18,6 +37,8 @@ const Login = () => {
                             className="form-control"
                             id="floatingInput"
                             placeholder="name@example.com"
+                            value={masv}
+                            onChange={(e) => setMasv(e.target.value)}
                         />
                         <label htmlFor="floatingInput">Tên đăng nhập</label>
                         </div>
@@ -27,6 +48,8 @@ const Login = () => {
                             className="form-control"
                             id="floatingPassword"
                             placeholder="Password"
+                            value={matkhau}
+                            onChange={(e) => setMatkhau(e.target.value)}
                         />
                         <label htmlFor="floatingPassword">Mật khẩu</label>
                         </div>
@@ -35,16 +58,18 @@ const Login = () => {
                         <input
                             className="form-check-input"
                             type="checkbox"
-                            value=""
                             id="rememberPasswordCheck"
                             style={{border: '1px solid gray'}}
+                            value={matkhau}
+                            onChange={(e) => setMatkhau(e.target.value)}
                         />
                         <label className="form-check-label" htmlFor="rememberPasswordCheck">
                             Ghi nhớ mật khẩu
                         </label>
                         </div>
                         <div className="d-grid pt-3">
-                        <button className={`btn btn-primary ${styles['btn-login']} text-uppercase fw-bold`} type="submit">
+                        <button className={`btn btn-primary ${styles['btn-login']} text-uppercase fw-bold`} type="submit"
+                        onClick={handleLogin}>
                             ĐĂNG NHẬP
                         </button>
                         </div>
