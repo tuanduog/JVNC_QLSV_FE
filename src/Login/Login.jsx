@@ -3,23 +3,32 @@ import styles from '../Login/Login.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [masv, setMasv] = useState("");
+    const [tendn, setTendn] = useState("");
     const [matkhau, setMatkhau] = useState("");
-
+    const [remember, setRemember] = useState(false);
+    const navigate = useNavigate();
     const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-        const user = { masv: masv, matkhau: matkhau };
+        const user = { tendn: tendn, matkhau: matkhau, remember: remember };
         const res = await axios.post("http://localhost:8080/auth/login", user);
         console.log("Token nhận được:", res.data.token);
         localStorage.setItem("token", res.data.token);
+        const role = res.data.role;
         alert("Đăng nhập thành công!");
+        if(role === "ROLE_SINHVIEN"){
+            navigate('/Home_Student');
+        }
+        if(role === "ROLE_GIANGVIEN"){
+            navigate('/Home_Lecturer');
+        }
     } catch (err) {
-      console.error(err);
-
+        console.error(err);
+        alert(err.response.data);
     }
   };
     return (
@@ -37,8 +46,8 @@ const Login = () => {
                             className="form-control"
                             id="floatingInput"
                             placeholder="name@example.com"
-                            value={masv}
-                            onChange={(e) => setMasv(e.target.value)}
+                            value={tendn}
+                            onChange={(e) => setTendn(e.target.value)}
                         />
                         <label htmlFor="floatingInput">Tên đăng nhập</label>
                         </div>
@@ -60,8 +69,8 @@ const Login = () => {
                             type="checkbox"
                             id="rememberPasswordCheck"
                             style={{border: '1px solid gray'}}
-                            value={matkhau}
-                            onChange={(e) => setMatkhau(e.target.value)}
+                            checked={remember}
+                            onChange={(e) => setRemember(e.target.checked)}
                         />
                         <label className="form-check-label" htmlFor="rememberPasswordCheck">
                             Ghi nhớ mật khẩu
