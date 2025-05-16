@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './Home_Stu.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 // #e0e0e0
 const Home_Stu = () => {
@@ -11,29 +11,25 @@ const Home_Stu = () => {
     const location = useLocation();
     const userInfo = location.state?.userInfo;
     const navigate = useNavigate();
-    const handleHome = async (e) => {
-        e.preventDefault();
+    const handleHome = async (path) => {
         setActive("Trang chủ");
+        navigate(path, { state: { userInfo }});
     }
-    const handleInfo = async (e) => {
-        e.preventDefault();
+    const handleInfo = async (path) => {
         setActive("Thông tin");
-
+        navigate(path, { state: { userInfo }});
     }
-    const handleSchedule = async (e) => {
-        e.preventDefault();
+    const handleSchedule = async (path) => {
         setActive("Thời khóa biểu");
-
+        navigate(path, { state: { userInfo }});
     }
-    const handleCourse = async (e) => {
-        e.preventDefault();
+    const handleCourse = async (path) => {
         setActive("Học phần");
-
+        navigate(path, { state: {userInfo}});
     }
-    const handleResponse = async (e) => {
-        e.preventDefault();
+    const handleResponse = async (path) => {
         setActive("Phản hồi");
-
+        navigate(path, { state: {userInfo}});
     }
     const handleLogout = async (e) => {
         e.preventDefault();
@@ -69,23 +65,23 @@ const Home_Stu = () => {
                     <ul className="nav flex-column">
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-house text-white"></i>
-                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={handleHome}>Trang chủ</a>
+                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={() => handleHome("/Home_Student")}>Trang chủ</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-user text-white"></i>
-                            <a className={`nav-link text-white ${active === "Thông tin" ? "active": ""}`} onClick={handleInfo}>Thông tin sinh viên</a>
+                            <a className={`nav-link text-white ${active === "Thông tin" ? "active": ""}`} onClick={() => handleInfo("/Home_Student/Student_info")}>Thông tin sinh viên</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-calendar text-white"></i>
-                            <a className={`nav-link text-white ${active === "Thời khóa biểu" ? "active": ""}`} onClick={handleSchedule}>Thời khóa biểu</a>
+                            <a className={`nav-link text-white ${active === "Thời khóa biểu" ? "active": ""}`} onClick={() => handleSchedule("/Home_Student/Schedule")}>Thời khóa biểu</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-book text-white"></i>
-                            <a className={`nav-link text-white ${active === "Học phần" ? "active": ""}`} onClick={handleCourse}>Thông tin học phần</a>
+                            <a className={`nav-link text-white ${active === "Học phần" ? "active": ""}`} onClick={() => handleCourse("/Home_Student/Course")}>Thông tin học phần</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-triangle-exclamation text-white"></i>
-                            <a className={`nav-link text-white ${active === "Phản hồi" ? "active": ""}`} onClick={handleResponse}>Phản hồi</a>
+                            <a className={`nav-link text-white ${active === "Phản hồi" ? "active": ""}`} onClick={() => handleResponse("/Home_Student/Response")}>Phản hồi</a>
                         </li>
                         <li className="nav-item d-flex align-items-center">
                             <i class="fa-solid fa-right-from-bracket text-white"></i>
@@ -95,6 +91,7 @@ const Home_Stu = () => {
                 </div>
 
                 <div className="flex-grow-1 p-4" style={{backgroundColor: '#dee2e6'}}>
+                    <Outlet/>
                 </div>
             </div>
         </div>
