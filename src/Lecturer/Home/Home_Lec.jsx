@@ -9,7 +9,7 @@ const Home_Lec = () => {
         <div> 
             <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{height: '70px'}}>
                 <div class="container-fluid">
-                    <a class="navbar-brand fw-bold ps-3" href="#">QUẢN LÝ SINH VIÊN</a>
+                    <a class="navbar-brand fw-bold ps-3">QUẢN LÝ SINH VIÊN</a>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="d-flex align-items-center ms-auto me-3">
                         <span class="text-black me-2 pe-2">Nguyễn Văn A</span>

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
     const [tendn, setTendn] = useState("");
@@ -12,19 +13,20 @@ const Login = () => {
     const navigate = useNavigate();
     const handleLogin = async (e) => {
     e.preventDefault();
-
+    
     try {
         const user = { tendn: tendn, matkhau: matkhau, remember: remember };
         const res = await axios.post("http://localhost:8080/auth/login", user);
         console.log("Token nhận được:", res.data.token);
+        const userInfo = jwtDecode(res.data.token);
         localStorage.setItem("token", res.data.token);
         const role = res.data.role;
         alert("Đăng nhập thành công!");
         if(role === "ROLE_SINHVIEN"){
-            navigate('/Home_Student');
+            navigate('/Home_Student', {state : {userInfo : userInfo}});
         }
         if(role === "ROLE_GIANGVIEN"){
-            navigate('/Home_Lecturer');
+            navigate('/Home_Lecturer', {state : {userInfo : userInfo}});
         }
     } catch (err) {
         console.error(err);
