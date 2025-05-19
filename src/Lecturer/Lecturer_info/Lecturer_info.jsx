@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import '../Student_info/Student_info.css';
+import '../Lecturer_info/Lecturer_info.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useState } from "react";
 import axios from "axios";
@@ -22,17 +22,18 @@ const Student_info = () => {
     }
 
     const handleUpdate = async () => {
-        const new_info = {gioitinh: gioiTinh, quequan: queQuan, sodienthoai: sodt, ngaysinh:ngaySinh, email: email};
-        
-        const res = await axios.put(`http://localhost:8080/auth/update-sinhvien/${userInfo.masv}`, new_info,
+        const new_info = {gioitinh: gioiTinh, quequan: queQuan, ngaysinh: ngaySinh, sodienthoai: sodt, email: email};
+
+        const res = await axios.put(`http://localhost:8080/auth/update-giangvien/${userInfo.magv}`, new_info,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
-        );
-        console.log(res.data);
+        )
+        console.log(res.data)
         alert("Chỉnh sửa thông tin thành công!");
+        setShow("Chỉnh sửa");
+        await fetchUser();
     }
 
-    useEffect(() => {
-        const fetchUser = async () => {
+    const fetchUser = async () => {
             const res = await axios.get("http://localhost:8080/auth/user-info",
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             );
@@ -44,6 +45,8 @@ const Student_info = () => {
             setEmail(res.data.email);
             
         }
+
+    useEffect(() => {
         fetchUser();
     }, []);
 
@@ -63,7 +66,7 @@ const Student_info = () => {
                         <h6 className="user-email">{email}</h6>
                         </div>
                         <div className="about">
-                            <p>Mã sinh viên: {userInfo.masv}</p>
+                            <p>Mã giảng viên: {userInfo.magv}</p>
                             <p>Lớp: </p>
                             <p>Khoa: </p>
                         </div>

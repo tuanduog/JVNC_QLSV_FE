@@ -3,33 +3,38 @@ import './Home_Lec.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 // #e0e0e0
 const Home_Lec = () => {
     const [active, setActive] = useState("Trang chủ");
     const location = useLocation();
     const userInfo = location.state?.userInfo;
-    const naviagate = useNavigate();
-    const handleHome = async () => {
+    const navigate = useNavigate();
+    const handleHome = async (path) => {
         setActive("Trang chủ");
+        navigate(path, {state: {userInfo}});
     }
     const handleInfo = async () => {
         setActive("Thông tin");
+        navigate("Lecturer_info", {state: {userInfo}});
     }
     const handleSchedule = async () => {
         setActive("Thời khóa biểu");
+        navigate("Schedule", {state: {userInfo}});
     }
     const handleCourse = async () => {
         setActive("Học phần");
     }
     const handleResponse = async () => {
         setActive("Phản hồi");
+        navigate("Response", {state: {userInfo}});
     }
     const handleLogout = async () => {
         setActive("Đăng xuất");
         localStorage.removeItem("token");
-        naviagate("/");
+        navigate("/");
     }
+    
     return (
         <div> 
             <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{height: '70px'}}>
@@ -51,7 +56,7 @@ const Home_Lec = () => {
                     <ul className="nav flex-column">
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-house text-white"></i>
-                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={handleHome}>Trang chủ</a>
+                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={() => handleHome("/Home_Lecturer")}>Trang chủ</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-user text-white"></i>
@@ -77,6 +82,7 @@ const Home_Lec = () => {
                 </div>
 
                 <div className="flex-grow-1 p-4" style={{backgroundColor: '#dee2e6'}}>
+                    <Outlet/>
                 </div>
             </div>
         </div>
