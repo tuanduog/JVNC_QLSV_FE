@@ -28,6 +28,9 @@ const Login = () => {
         if(role === "ROLE_GIANGVIEN"){
             navigate('/Home_Lecturer', {state : {userInfo : userInfo}});
         }
+        if(role === "ROLE_ADMIN"){
+            navigate('/Home_Admin', {state : {userInfo : userInfo}})
+        }
     } catch (err) {
         console.error(err);
         alert(err.response.data);

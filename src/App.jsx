@@ -12,6 +12,8 @@ import Lec_info from './Lecturer/Lecturer_info/Lecturer_info';
 import Lec_Schedule from './Lecturer/Schedule/Schedule';
 import Lec_Response from './Lecturer/Response/Response';
 
+import Home_Admin from './Admin/Home/Home_Admin';
+
 function App() {
   return (
     <>
@@ -24,10 +26,14 @@ function App() {
             <Route path='Response' element={<Stu_Response/>}></Route>
             <Route path='Course' element={<Course_info/>}></Route>
           </Route>
+
           <Route path='/Home_Lecturer' element={<Home_Lec/>}>
             <Route path='Lecturer_info' element={<Lec_info/>}></Route>
             <Route path='Schedule' element={<Lec_Schedule/>}></Route>
             <Route path='Response' element={<Lec_Response/>}></Route>
+          </Route>
+
+          <Route path='/Home_Admin' element={<Home_Admin/>}>
             
           </Route>
         </Routes>

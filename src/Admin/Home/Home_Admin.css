@@ -1,0 +1,19 @@
+.nav-link {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 0 solid transparent;
+  transition: border-bottom ease, font-weight ease;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  border-bottom: 2px solid white; 
+  font-weight: bold;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid white !important;
+  font-weight: bold;
+}
