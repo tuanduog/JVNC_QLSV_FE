@@ -79,16 +79,16 @@ function Manage_SinhVien(){
                 <tbody>
                     {sinhVien.map((sv, index) => (
                         <tr key={sv.masv} style={{fontSize: '14px'}}>
-                            <td>{index+1}</td>
-                            <td>{sv.masv}</td>
-                            <td>{sv.hovaten}</td>
-                            <td>{sv.gioitinh}</td>
-                            <td>{format(new Date(sv.ngaysinh), 'dd/MM/yyyy')}</td>
-                            <td>{sv.quequan}</td>
-                            <td>{sv.sodienthoai}</td>
-                            <td>{sv.email}</td>
-                            <td>{sv.lop}</td>
-                            <td>{sv.khoa}</td>
+                            <td style={{paddingTop: '11px'}}>{index+1}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.masv}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.hovaten}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.gioitinh}</td>
+                            <td style={{paddingTop: '11px'}}>{format(new Date(sv.ngaysinh), 'dd/MM/yyyy')}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.quequan}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.sodienthoai}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.email}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.lop}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.khoa}</td>
                             <td>
                                 <button className="btn btn-warning btn-sm me-2" onClick={() => handleFix(sv)}>Sửa</button>
                                 <button className="btn btn-danger btn-sm" onClick={() => handleDelete(sv.masv)}>Xóa</button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-function Hellopage() {
+function Hello_Stu() {
   const location = useLocation();
   const userInfo = location.state?.userInfo;
 
@@ -52,4 +52,4 @@ function Hellopage() {
   );
 }
 
-export default Hellopage;
+export default Hello_Stu;

@@ -65,7 +65,7 @@ const Home_Stu = () => {
                     <ul className="nav flex-column">
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-house text-white"></i>
-                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={() => handleHome("/Home_Student")}>Trang chủ</a>
+                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={() => handleHome("/Home_Student/Hello_Stu")}>Trang chủ</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-user text-white"></i>

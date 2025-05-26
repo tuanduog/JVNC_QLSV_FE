@@ -76,14 +76,14 @@ function Manage_GiangVien(){
                 <tbody>
                     {giangvien.map((gv, index) => (
                         <tr key={gv.magv}  style={{fontSize: '14px'}}>
-                        <td>{index + 1}</td>
-                        <td>{gv.magv}</td>
-                        <td>{gv.hovaten}</td>
-                        <td>{gv.gioitinh}</td>
-                        <td>{format(new Date(gv.ngaysinh), 'dd/MM/yyyy')}</td>
-                        <td>{gv.quequan}</td>
-                        <td>{gv.sodienthoai}</td>
-                        <td>{gv.email}</td>
+                        <td style={{paddingTop: '11px'}}>{index + 1}</td>
+                        <td style={{paddingTop: '11px'}}>{gv.magv}</td>
+                        <td style={{paddingTop: '11px'}}>{gv.hovaten}</td>
+                        <td style={{paddingTop: '11px'}}>{gv.gioitinh}</td>
+                        <td style={{paddingTop: '11px'}}>{format(new Date(gv.ngaysinh), 'dd/MM/yyyy')}</td>
+                        <td style={{paddingTop: '11px'}}>{gv.quequan}</td>
+                        <td style={{paddingTop: '11px'}}>{gv.sodienthoai}</td>
+                        <td style={{paddingTop: '11px'}}>{gv.email}</td>
                         <td></td>
                         <td>
                             <button className="btn btn-warning btn-sm me-2" onClick={() => handleFix(gv)}>Sửa</button>
@@ -95,7 +95,7 @@ function Manage_GiangVien(){
             </table>
 
             <div className="text-center my-4">
-                <button className="btn btn-danger px-4" onClick={handleAdd}>Thêm sinh viên mới</button>
+                <button className="btn btn-primary px-4" style={{width: '500px'}} onClick={handleAdd}>Thêm sinh viên mới</button>
             </div>
         </div>
     )
