@@ -58,23 +58,23 @@ const Home_Admin = () => {
                     <ul className="nav flex-column">
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-house text-white"></i>
-                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={() => handleHome("/Home_Admin")}>Trang chủ</a>
+                            <a className={`nav-link text-white ${active === "Trang chủ" ? "active" : ""}`} onClick={() => handleHome("/Home_Admin/Hellopage")}>Trang chủ</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-user text-white"></i>
-                            <a className={`nav-link text-white ${active === "Quản lý sinh viên" ? "active": ""}`} onClick={() => handleInfo("/Home_Student/Student_info")}>Quản lý sinh viên</a>
+                            <a className={`nav-link text-white ${active === "Quản lý sinh viên" ? "active": ""}`} onClick={() => handleInfo("/Home_Admin/Manage_SinhVien")}>Quản lý sinh viên</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-calendar text-white"></i>
-                            <a className={`nav-link text-white ${active === "Quản lý giảng viên" ? "active": ""}`} onClick={() => handleSchedule("/Home_Student/Schedule")}>Quản lý giảng viên</a>
+                            <a className={`nav-link text-white ${active === "Quản lý giảng viên" ? "active": ""}`} onClick={() => handleSchedule("/Home_Admin/Manage_GiangVien")}>Quản lý giảng viên</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-book text-white"></i>
-                            <a className={`nav-link text-white ${active === "Quản lý học phần" ? "active": ""}`} onClick={() => handleCourse("/Home_Student/Course")}>Quản lý học phần</a>
+                            <a className={`nav-link text-white ${active === "Quản lý học phần" ? "active": ""}`} onClick={() => handleCourse("/Home_Admin/Manage_Course")}>Quản lý học phần</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-triangle-exclamation text-white"></i>
-                            <a className={`nav-link text-white ${active === "Quản lý phản hồi" ? "active": ""}`} onClick={() => handleResponse("/Home_Student/Response")}>Quản lý phản hồi</a>
+                            <a className={`nav-link text-white ${active === "Quản lý phản hồi" ? "active": ""}`} onClick={() => handleResponse("/Home_Admin/Manage_Response")}>Quản lý phản hồi</a>
                         </li>
                         <li className="nav-item d-flex align-items-center">
                             <i class="fa-solid fa-right-from-bracket text-white"></i>
