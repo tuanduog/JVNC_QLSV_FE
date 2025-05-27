@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useLocation } from "react-router-dom";
-
+import axios from "axios";
 
 function Add_Course() {
-    const location = useLocation();
-    const hp = location.state?.hp;
-   
+    const [mahp, setMahp] = useState("");
+    const [tenhp, setTenhp] = useState("");
+    const [sotc, setSotc] = useState("");
+    const [ngayhoc, setNgayhoc] = useState("");
+    const [phonghoc, setPhonghoc] = useState("");
+    const [cahoc, setCahoc] = useState("");
+    const handleAdd = async () => {
+        const new_hp = {mahp: mahp, tenhp: tenhp, sotc: sotc, ngayhoc: ngayhoc, phonghoc: phonghoc, cahoc: cahoc};
+        console.log(new_hp);
+        const res = await axios.post("http://localhost:8080/auth/add-hocphan", new_hp,
+            {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+        )
+        console.log(res.data);
+        alert("Thêm học phần thành công!");
+    }
+
+    const handleRefresh = () => {
+        setMahp("");
+        setTenhp("");
+        setSotc("");
+        setNgayhoc("");
+        setPhonghoc("");
+        setCahoc("");
+    }   
     return (
         <div className="container mt-3">
         <div className="card shadow rounded p-4">
@@ -15,7 +35,7 @@ function Add_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Mã học phần:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={mahp} onChange={(e) => setMahp(e.target.value)}/>
                 </div>
             </div>
 
@@ -23,7 +43,7 @@ function Add_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Tên học phần:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={tenhp} onChange={(e) => setTenhp(e.target.value)}/>
                 </div>
             </div>
 
@@ -31,7 +51,7 @@ function Add_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Số tín chỉ:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={sotc} onChange={(e) => setSotc(e.target.value)}/>
                 </div>
             </div>
 
@@ -39,13 +59,13 @@ function Add_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Ngày học:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={ngayhoc} onChange={(e) => setNgayhoc(e.target.value)}/>
                 </div>
             </div>
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Phòng học:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={phonghoc} onChange={(e) => setPhonghoc(e.target.value)}/>
                 </div>
             </div>
 
@@ -53,14 +73,14 @@ function Add_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Ca học:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={cahoc} onChange={(e) => setCahoc(e.target.value)}/>
                 </div>
             </div>
 
             {/* Buttons */}
             <div className="text-center">
-                <button className="btn btn-warning me-3" >Làm mới</button>
-                <button className="btn btn-primary">Cập nhật</button>
+                <button className="btn btn-warning me-3" onClick={handleRefresh}>Làm mới</button>
+                <button className="btn btn-primary" onClick={handleAdd}>Cập nhật</button>
             </div>
         </div>
         </div>

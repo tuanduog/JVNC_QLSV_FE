@@ -1,12 +1,50 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocation } from "react-router-dom";
-
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 function Fix_Course() {
     const location = useLocation();
     const hp = location.state?.hp;
-   
+    const [mahp, setMahp] = useState("");
+    const [tenhp, setTenhp] = useState("");
+    const [sotc, setSotc] = useState("");
+    const [ngayhoc, setNgayhoc] = useState("");
+    const [phonghoc, setPhonghoc] = useState("");
+    const [cahoc, setCahoc] = useState("");
+
+    const handleRefresh = () => {
+        setMahp("");
+        setTenhp("");
+        setSotc("");
+        setNgayhoc("");
+        setPhonghoc("");
+        setCahoc("");
+    }
+
+    const handleUpdate = async () => {
+        const new_hp = {tenhp: tenhp, sotc: sotc, ngayhoc: ngayhoc, phonghoc: phonghoc, cahoc: cahoc};
+        const res = await axios.post(`http://localhost:8080/auth/adm-update-hp/${mahp}`, new_hp,
+            {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+        )
+        console.log(res.data);
+        alert("Chỉnh sửa học phần thành công");
+    }
+
+    const fetchHocphan = () => {
+        setMahp(hp.mahp);
+        setTenhp(hp.tenhp);
+        setSotc(hp.sotc);
+        setPhonghoc(hp.phonghoc);
+        setNgayhoc(hp.ngayhoc);
+        setCahoc(hp.cahoc);
+    }
+
+    useEffect(() => {
+        fetchHocphan();
+    },[]);
     return (
         <div className="container mt-3">
         <div className="card shadow rounded p-4">
@@ -14,7 +52,7 @@ function Fix_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Mã học phần:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={mahp} onChange={(e) => setMahp(e.target.value)}/>
                 </div>
             </div>
 
@@ -22,7 +60,7 @@ function Fix_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Tên học phần:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={tenhp} onChange={(e) => setTenhp(e.target.value)}/>
                 </div>
             </div>
 
@@ -30,7 +68,7 @@ function Fix_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Số tín chỉ:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={sotc} onChange={(e) => setSotc(e.target.value)}/>
                 </div>
             </div>
 
@@ -38,13 +76,13 @@ function Fix_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Ngày học:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={ngayhoc} onChange={(e) => setNgayhoc(e.target.value)}/>
                 </div>
             </div>
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Phòng học:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={phonghoc} onChange={(e) => setPhonghoc(e.target.value)}/>
                 </div>
             </div>
 
@@ -52,14 +90,14 @@ function Fix_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Ca học:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={cahoc} onChange={(e) => setCahoc(e.target.value)}/>
                 </div>
             </div>
 
             {/* Buttons */}
             <div className="text-center">
-                <button className="btn btn-warning me-3" >Làm mới</button>
-                <button className="btn btn-primary">Cập nhật</button>
+                <button className="btn btn-warning me-3" onClick={handleRefresh}>Làm mới</button>
+                <button className="btn btn-primary" onClick={handleUpdate}>Cập nhật</button>
             </div>
         </div>
         </div>
