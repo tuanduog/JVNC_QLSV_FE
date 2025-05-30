@@ -27,14 +27,18 @@ function Add_GiangVien() {
     const handleAdd = async () => {
         const new_gv = {magv: magv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email, matkhau: matkhau, quyen_nd: "ROLE_SINHVIEN"}
         console.log(new_gv);
-        const res = await axios.post("http://localhost:8080/auth/add-giangvien", new_gv,
-            {
-                headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
-                "Content-Type": "application/json"
-            }
-        )
-        console.log(res.data);
-        alert("Thêm giảng viên thành công!");
+        try {
+            const res = await axios.post("http://localhost:8080/auth/add-giangvien", new_gv,
+                {
+                    headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
+                    "Content-Type": "application/json"
+                }
+            )
+            console.log(res);
+            alert("Thêm giảng viên thành công");
+        } catch (err){
+            alert(err.response?.data);
+        }
     }
 
     return (

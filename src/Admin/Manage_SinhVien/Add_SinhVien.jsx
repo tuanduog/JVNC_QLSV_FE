@@ -27,14 +27,19 @@ function Add_SinhVien() {
     const handleAdd = async () => {
         const new_sv = {masv: masv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email, matkhau: matkhau, quyen_nd: "ROLE_SINHVIEN"}
         console.log(new_sv);
-        const res = await axios.post("http://localhost:8080/auth/add-sinhvien", new_sv,
-            {
-                headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
-                "Content-Type": "application/json"
-            }
-        )
-        console.log(res.data);
-        alert("Thêm sinh viên thành công!");
+        try {
+            const res = await axios.post("http://localhost:8080/auth/add-sinhvien", new_sv,
+                {
+                    headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
+                    "Content-Type": "application/json"
+                }
+            )
+            console.log(res.data);
+            alert("Thêm sinh viên thành công");
+        } catch (err){
+            alert(err.response?.data);
+        }
+        
     }
 
     return (

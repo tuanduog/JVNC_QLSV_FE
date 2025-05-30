@@ -17,11 +17,15 @@ function Add_Course() {
         }
         const new_hp = {mahp: mahp, tenhp: tenhp, sotc: sotc, ngayhoc: ngayhoc, phonghoc: phonghoc, cahoc: cahoc};
         console.log(new_hp);
-        const res = await axios.post("http://localhost:8080/auth/add-hocphan", new_hp,
-            {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
-        )
-        console.log(res.data);
-        alert("Thêm học phần thành công!");
+        try {
+            const res = await axios.post("http://localhost:8080/auth/add-hocphan", new_hp,
+                {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+            )
+            console.log(res.data);
+            alert("Thêm học phần thành công");
+        } catch(err){
+            alert(err.response?.data);
+        }
     }
 
     const handleRefresh = () => {
