@@ -10,6 +10,11 @@ function Add_Course() {
     const [phonghoc, setPhonghoc] = useState("");
     const [cahoc, setCahoc] = useState("");
     const handleAdd = async () => {
+        const parsedSotc = parseInt(sotc);
+        if (isNaN(parsedSotc) || parsedSotc <= 0) {
+            alert("Số tín chỉ phải là một số nguyên dương!");
+            return;
+        }
         const new_hp = {mahp: mahp, tenhp: tenhp, sotc: sotc, ngayhoc: ngayhoc, phonghoc: phonghoc, cahoc: cahoc};
         console.log(new_hp);
         const res = await axios.post("http://localhost:8080/auth/add-hocphan", new_hp,

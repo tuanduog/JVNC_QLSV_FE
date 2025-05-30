@@ -23,13 +23,13 @@ const Login = () => {
         const role = res.data.role;
         alert("Đăng nhập thành công!");
         if(role === "ROLE_SINHVIEN"){
-            navigate('/Home_Student', {state : {userInfo : userInfo}});
+            navigate('/Home_Student/Hello_Stu', {state : {userInfo : userInfo}});
         }
         if(role === "ROLE_GIANGVIEN"){
-            navigate('/Home_Lecturer', {state : {userInfo : userInfo}});
+            navigate('/Home_Lecturer/Hello_Lec', {state : {userInfo : userInfo}});
         }
         if(role === "ROLE_ADMIN"){
-            navigate('/Home_Admin', {state : {userInfo : userInfo}})
+            navigate('/Home_Admin/Hellopage', {state : {userInfo : userInfo}})
         }
     } catch (err) {
         console.error(err);

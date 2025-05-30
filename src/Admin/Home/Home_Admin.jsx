@@ -80,7 +80,7 @@ const Home_Admin = () => {
                             <i class="fa-solid fa-right-from-bracket text-white"></i>
                             <a className={`nav-link text-white ${active === "Đăng xuất" ? "active" : ""}`} onClick={handleLogout}>Đăng xuất</a>
                         </li>
-                    </ul>
+                    </ul>A
                 </div>
 
                 <div className="flex-grow-1 p-4" style={{backgroundColor: '#dee2e6'}}>

@@ -4,6 +4,8 @@ import { useEffect } from "react";
 
 function Manage_Response(){
     const [phanhoi, setPhanhoi] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemPerPage = 10;
     const handleCheck = async (ph) => {
         const newStatus = ph.trangthai === "Chưa duyệt" ? "Đã duyệt" : "Chưa duyệt";
         const res = await axios.put(`http://localhost:8080/auth/check-phanhoi/${ph.maph}`, 
@@ -35,6 +37,72 @@ function Manage_Response(){
     useEffect(() => {
         fetchPhanhoi();
     },[]);
+
+    const totalPages = Math.ceil(phanhoi.length / itemPerPage);
+    const lastIndex = currentPage * itemPerPage;
+    const firstIndex = lastIndex - itemPerPage;
+    const currentItem = phanhoi.slice(firstIndex, lastIndex);
+    
+    const handlePrev = () => {
+        if(currentPage > 1){
+            setCurrentPage(currentPage - 1);
+        }
+    }
+    const handleNext = () => {
+        if(currentPage < totalPages){
+            setCurrentPage(currentPage + 1);
+        }
+    }
+    const handlePageClick = (page) => {
+        setCurrentPage(page);
+    }
+    const renderPageNumbers = () => {
+        const pageNumbers = [];
+        const maxVisiblePages = 5;
+
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, currentPage + 2);
+
+        if (endPage - startPage < maxVisiblePages - 1) {
+            if (startPage === 1) {
+                endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            } else if (endPage === totalPages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+        }
+
+        if (startPage > 1) {
+            pageNumbers.push(
+                <li key={1} className="page-item">
+                    <button className="page-link" onClick={() => handlePageClick(1)}>1</button>
+                </li>
+            );
+            if (startPage > 2) {
+                pageNumbers.push(<li key="start-ellipsis" className="page-item disabled"><span className="page-link">...</span></li>);
+            }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pageNumbers.push(
+                <li key={i} className={`page-item ${currentPage === i ? "active" : ""}`}>
+                    <button className="page-link" onClick={() => handlePageClick(i)}>{i}</button>
+                </li>
+            );
+        }
+
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                pageNumbers.push(<li key="end-ellipsis" className="page-item disabled"><span className="page-link">...</span></li>);
+            }
+            pageNumbers.push(
+                <li key={totalPages} className="page-item">
+                    <button className="page-link" onClick={() => handlePageClick(totalPages)}>{totalPages}</button>
+                </li>
+            );
+        }
+
+        return pageNumbers;
+    };
     return (
         <div className="container mt-4">
             <h4 className="mb-3">Danh sách phản hồi</h4>
@@ -48,7 +116,7 @@ function Manage_Response(){
                     </tr>
                 </thead>
                 <tbody>
-                    {phanhoi.map((ph) => (
+                    {currentItem.map((ph) => (
                         <tr key={ph.maph} style={{fontSize: '14px'}}>
                             <td style={{paddingTop: '11px'}}>{ph.maph}</td>
                             <td style={{paddingTop: '11px'}}>{ph.noidung}</td>
@@ -65,13 +133,15 @@ function Manage_Response(){
 
             <nav className="d-flex justify-content-center">
                 <ul className="pagination">
-                <li className="page-item disabled">
-                    <button className="page-link">Trước</button>
-                </li>
-                    
-                <li className="page-item">
-                    <button className="page-link">Sau</button>
-                </li>
+                    <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                        <button className="page-link" onClick={handlePrev}>Trước</button>
+                    </li>
+
+                    {renderPageNumbers()}
+
+                    <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+                        <button className="page-link" onClick={handleNext}>Sau</button>
+                    </li>
                 </ul>
             </nav>
         </div>

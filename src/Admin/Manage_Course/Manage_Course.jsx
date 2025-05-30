@@ -6,6 +6,8 @@ import { useLocation } from "react-router-dom";
 
 function Manage_Course(){
     const [hocphan, setHocphan] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemPerPage = 10;
     const navigate = useNavigate();
     const location = useLocation();
     const userInfo = location.state?.userInfo;
@@ -48,8 +50,76 @@ function Manage_Course(){
     useEffect(() => {
         fetchHocphan();
     }, []);
+
+    // logic chuyển trang
+    const totalPages = Math.ceil(hocphan.length / itemPerPage);
+    const lastIndex = currentPage * itemPerPage;
+    const firstIndex = lastIndex - itemPerPage;
+    const currentItem = hocphan.slice(firstIndex, lastIndex);
+
+    const handlePrev = () => {
+        if(currentPage > 1){
+            setCurrentPage(currentPage - 1);
+        }
+    }
+    const handleNext = () => {
+        if(currentPage < totalPages){
+            setCurrentPage(currentPage + 1);
+        }
+    }
+    const handlePageClick = (page) => {
+        setCurrentPage(page);
+    }
+
+    const renderPageNumbers = () => {
+        const pageNumbers = [];
+        const maxVisiblePages = 5;
+
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, currentPage + 2);
+
+        if (endPage - startPage < maxVisiblePages - 1) {
+            if (startPage === 1) {
+                endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            } else if (endPage === totalPages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+        }
+
+        if (startPage > 1) {
+            pageNumbers.push(
+                <li key={1} className="page-item">
+                    <button className="page-link" onClick={() => handlePageClick(1)}>1</button>
+                </li>
+            );
+            if (startPage > 2) {
+                pageNumbers.push(<li key="start-ellipsis" className="page-item disabled"><span className="page-link">...</span></li>);
+            }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pageNumbers.push(
+                <li key={i} className={`page-item ${currentPage === i ? "active" : ""}`}>
+                    <button className="page-link" onClick={() => handlePageClick(i)}>{i}</button>
+                </li>
+            );
+        }
+
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                pageNumbers.push(<li key="end-ellipsis" className="page-item disabled"><span className="page-link">...</span></li>);
+            }
+            pageNumbers.push(
+                <li key={totalPages} className="page-item">
+                    <button className="page-link" onClick={() => handlePageClick(totalPages)}>{totalPages}</button>
+                </li>
+            );
+        }
+
+        return pageNumbers;
+    };
     return (
-        <div className="container mt-4">
+        <div className="container mt-3">
             <h4 className="mb-3">Danh sách học phần</h4>
             <table className="table table-bordered table-hover text-center">
                 <thead className="table-light">
@@ -65,7 +135,7 @@ function Manage_Course(){
                     </tr>
                 </thead>
                 <tbody>
-                    {hocphan.map((hp, index) => (
+                    {currentItem.map((hp, index) => (
                         <tr key={hp.mahp} style={{fontSize: '14px'}}>
                             <td style={{paddingTop: '11px'}}>{index + 1}</td>
                             <td style={{paddingTop: '11px'}}>{hp.mahp}</td>
@@ -87,13 +157,15 @@ function Manage_Course(){
             </div>
             <nav className="d-flex justify-content-center">
                 <ul className="pagination">
-                <li className="page-item disabled">
-                    <button className="page-link">Trước</button>
-                </li>
-                    
-                <li className="page-item">
-                    <button className="page-link">Sau</button>
-                </li>
+                    <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                        <button className="page-link" onClick={handlePrev}>Trước</button>
+                    </li>
+
+                    {renderPageNumbers()}
+
+                    <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+                        <button className="page-link" onClick={handleNext}>Sau</button>
+                    </li>
                 </ul>
             </nav>
         </div>
