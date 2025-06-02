@@ -14,6 +14,8 @@ function Add_SinhVien() {
     const [quequan, setQuequan] = useState("");
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
+    const [lop, setLop] = useState("");
+    const [khoa, setKhoa] = useState("");
     const handleRefresh = () => {
         setMasv("");
         setHovaten("");
@@ -23,9 +25,12 @@ function Add_SinhVien() {
         setQuequan("");
         setSodt("");
         setEmail("");
+        setLop("");
+        setKhoa("");
     }
     const handleAdd = async () => {
-        const new_sv = {masv: masv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email, matkhau: matkhau, quyen_nd: "ROLE_SINHVIEN"}
+        const new_sv = {masv: masv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, 
+            email: email, matkhau: matkhau, malop: lop, makhoa: khoa, quyen_nd: "ROLE_SINHVIEN"}
         console.log(new_sv);
         try {
             const res = await axios.post("http://localhost:8080/auth/add-sinhvien", new_sv,
@@ -122,7 +127,7 @@ function Add_SinhVien() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Lớp:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={lop} onChange={(e) => setLop(e.target.value)}/>
                 </div>
             </div>
 
@@ -130,7 +135,7 @@ function Add_SinhVien() {
             <div className="mb-4 row">
                 <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={khoa} onChange={(e) => setKhoa(e).target.value}/>
                 </div>
             </div>
 

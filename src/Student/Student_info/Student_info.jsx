@@ -175,7 +175,7 @@ const Student_info = () => {
                                         <label>Email: </label>
                                     </div>
                                     <div className="col-7">
-                                        <input type="url" className="form-control" id="website" placeholder=""
+                                        <input type="email" className="form-control" id="website" placeholder=""
                                         value={email} onChange={(e) => setEmail(e.target.value)}/>
                                     </div>
                                 </div>

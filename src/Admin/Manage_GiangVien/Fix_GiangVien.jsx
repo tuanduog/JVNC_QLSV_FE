@@ -16,6 +16,8 @@ function Fix_GiangVien() {
     const [quequan, setQuequan] = useState("");
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
+    const [khoa, setKhoa] = useState("");
+    const [hocphan, setHocphan] = useState("");
     console.log(gv.ngaysinh);
     const handleRefresh = () => {
         setMagv("");
@@ -25,9 +27,13 @@ function Fix_GiangVien() {
         setQuequan("");
         setSodt("");
         setEmail("");
+        setKhoa("");
+        setHocphan("");
     }
     const handleUpdate = async () => {
-        const update_gv = {hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email};
+        const update_gv = {hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email
+            , makhoa: khoa, mahp: hocphan
+        };
 
         const res = await axios.post(`http://localhost:8080/auth/adm-update-gv/${magv}`, update_gv,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
@@ -43,6 +49,8 @@ function Fix_GiangVien() {
         setQuequan(gv.quequan);
         setSodt(gv.sodienthoai);
         setEmail(gv.email);
+        setKhoa(gv.makhoa);
+        setHocphan(gv.mahp);
     }
     useEffect(() => {
         fetchSinhVien();
@@ -124,7 +132,7 @@ function Fix_GiangVien() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Lớp:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={khoa} onChange={(e) => setKhoa(e.target.value)}/>
                 </div>
             </div>
 
@@ -132,7 +140,7 @@ function Fix_GiangVien() {
             <div className="mb-4 row">
                 <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={hocphan} onChange={(e) => setHocphan(e.target.value)}/>
                 </div>
             </div>
 

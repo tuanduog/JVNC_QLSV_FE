@@ -138,6 +138,7 @@ function Manage_GiangVien(){
                         <th>Số điện thoại</th>
                         <th>Email</th>
                         <th>Khoa</th>
+                        <th>Học phần</th>
                         <th>Lựa chọn</th>
                     </tr>
                 </thead>
@@ -152,7 +153,8 @@ function Manage_GiangVien(){
                         <td style={{paddingTop: '11px'}}>{gv.quequan}</td>
                         <td style={{paddingTop: '11px'}}>{gv.sodienthoai}</td>
                         <td style={{paddingTop: '11px'}}>{gv.email}</td>
-                        <td></td>
+                        <td style={{paddingTop: '11px'}}>{gv.makhoa}</td>
+                        <td style={{paddingTop: '11px'}}>{gv.mahp}</td>
                         <td>
                             <button className="btn btn-warning btn-sm me-2" onClick={() => handleFix(gv)}>Sửa</button>
                             <button className="btn btn-danger btn-sm" onClick={() => handleDelete(gv.magv)}>Xóa</button>

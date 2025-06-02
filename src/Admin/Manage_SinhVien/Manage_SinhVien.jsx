@@ -155,8 +155,8 @@ function Manage_SinhVien(){
                             <td style={{paddingTop: '11px'}}>{sv.quequan}</td>
                             <td style={{paddingTop: '11px'}}>{sv.sodienthoai}</td>
                             <td style={{paddingTop: '11px'}}>{sv.email}</td>
-                            <td style={{paddingTop: '11px'}}>{sv.lop}</td>
-                            <td style={{paddingTop: '11px'}}>{sv.khoa}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.malop}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.makhoa}</td>
                             <td>
                                 <button className="btn btn-warning btn-sm me-2" onClick={() => handleFix(sv)}>Sửa</button>
                                 <button className="btn btn-danger btn-sm" onClick={() => handleDelete(sv.masv)}>Xóa</button>

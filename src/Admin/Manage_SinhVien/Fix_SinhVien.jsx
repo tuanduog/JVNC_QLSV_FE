@@ -16,6 +16,8 @@ function Fix_SinhVien() {
     const [quequan, setQuequan] = useState("");
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
+    const [lop, setLop] = useState("");
+    const [khoa, setKhoa] = useState("");
     console.log(sv.ngaysinh);
     const handleRefresh = () => {
         setMasv("");
@@ -25,9 +27,13 @@ function Fix_SinhVien() {
         setQuequan("");
         setSodt("");
         setEmail("");
+        setLop("");
+        setKhoa("");
     }
     const handleUpdate = async () => {
-        const update_sv = {hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email};
+        const update_sv = {hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email
+            , malop: lop, makhoa: khoa
+        };
 
         const res = await axios.post(`http://localhost:8080/auth/adm-update-sv/${masv}`, update_sv,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
@@ -43,6 +49,8 @@ function Fix_SinhVien() {
         setQuequan(sv.quequan);
         setSodt(sv.sodienthoai);
         setEmail(sv.email);
+        setLop(sv.malop);
+        setKhoa(sv.makhoa);
     }
     useEffect(() => {
         fetchSinhVien();
@@ -124,7 +132,7 @@ function Fix_SinhVien() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Lớp:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={lop} onChange={(e) => setLop(e.target.value)} />
                 </div>
             </div>
 
@@ -132,7 +140,7 @@ function Fix_SinhVien() {
             <div className="mb-4 row">
                 <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={khoa} onChange={(e) => setKhoa(e.target.value)}/>
                 </div>
             </div>
 

@@ -14,6 +14,8 @@ function Add_GiangVien() {
     const [quequan, setQuequan] = useState("");
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
+    const [khoa, setKhoa] = useState("");
+    const [hocphan, setHocphan] = useState("");
     const handleRefresh = () => {
         setMagv("");
         setHovaten("");
@@ -23,9 +25,12 @@ function Add_GiangVien() {
         setQuequan("");
         setSodt("");
         setEmail("");
+        setKhoa("");
+        setHocphan("");
     }
     const handleAdd = async () => {
-        const new_gv = {magv: magv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email, matkhau: matkhau, quyen_nd: "ROLE_SINHVIEN"}
+        const new_gv = {magv: magv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, 
+            email: email, matkhau: matkhau, makhoa: khoa, mahp: hocphan, quyen_nd: "ROLE_SINHVIEN"}
         console.log(new_gv);
         try {
             const res = await axios.post("http://localhost:8080/auth/add-giangvien", new_gv,
@@ -119,17 +124,17 @@ function Add_GiangVien() {
 
             {/* Lớp */}
             <div className="mb-3 row">
-                <label className="col-sm-4 col-form-label fw-bold">Lớp:</label>
+                <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={khoa} onChange={(e) => setKhoa(e.target.value)}/>
                 </div>
             </div>
 
             {/* Khoa */}
             <div className="mb-4 row">
-                <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
+                <label className="col-sm-4 col-form-label fw-bold">Học phần:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" value={hocphan} onChange={(e) => setHocphan(e).target.value}/>
                 </div>
             </div>
 
