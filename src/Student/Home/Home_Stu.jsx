@@ -46,14 +46,14 @@ const Home_Stu = () => {
     // }, []);
     return (
         <div> 
-            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{height: '70px'}}>
-                <div class="container-fluid">
-                    <a class="navbar-brand fw-bold ps-3" href="#">QUẢN LÝ SINH VIÊN</a>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="d-flex align-items-center ms-auto me-3">
-                        <span class="text-black me-2 pe-2">{userInfo.hovaten}</span>
+            <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{height: '70px'}}>
+                <div className="container-fluid">
+                    <a className="navbar-brand fw-bold ps-3" href="">QUẢN LÝ SINH VIÊN</a>
+                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div className="d-flex align-items-center ms-auto me-3">
+                        <span className="text-black me-2 pe-2">{userInfo.hovaten}</span>
                         {/* <img src="https://via.placeholder.com/40" alt="User Avatar" class="rounded-circle" style="width: 40px; height: 40px;"/> */}
-                        <i class="fa-solid fa-circle-user fa-2x"></i>
+                        <i className="fa-solid fa-circle-user fa-2x"></i>
                     </div>
                     </div>
                 </div>

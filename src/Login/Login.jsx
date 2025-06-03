@@ -19,6 +19,7 @@ const Login = () => {
         const res = await axios.post("http://localhost:8080/auth/login", user);
         console.log("Token nhận được:", res.data.token);
         const userInfo = jwtDecode(res.data.token);
+        // console.log(userInfo.sub);
         localStorage.setItem("token", res.data.token);
         const role = res.data.role;
         alert("Đăng nhập thành công!");
