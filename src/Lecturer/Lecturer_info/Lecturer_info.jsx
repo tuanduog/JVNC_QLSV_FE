@@ -67,8 +67,7 @@ const Student_info = () => {
                         </div>
                         <div className="about">
                             <p>Mã giảng viên: {userInfo.magv}</p>
-                            <p>Lớp: </p>
-                            <p>Khoa: </p>
+                            <p>Khoa: {userInfo.makhoa}</p>
                         </div>
                     </div>
                     </div>
@@ -81,9 +80,9 @@ const Student_info = () => {
                     <div className="row gutters">
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             {show === "Chỉnh sửa" ? (
-                                <h6 className="mb-3 text-primary">Thông tin cá nhân</h6>
+                                <h5 className="mb-3 text-primary">Thông tin cá nhân</h5>
                             ) : (
-                                <h6 className="mb-3 text-primary">Chỉnh sửa thông tin cá nhân</h6>
+                                <h5 className="mb-3 text-primary">Chỉnh sửa thông tin cá nhân</h5>
                             )}
                         </div>
                         <hr></hr>

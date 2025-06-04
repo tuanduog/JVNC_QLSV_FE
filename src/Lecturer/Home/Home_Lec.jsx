@@ -24,6 +24,7 @@ const Home_Lec = () => {
     }
     const handleCourse = async () => {
         setActive("Học phần");
+        navigate("Course", {state: {userInfo}});
     }
     const handleResponse = async () => {
         setActive("Phản hồi");
@@ -68,7 +69,7 @@ const Home_Lec = () => {
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-book text-white"></i>
-                            <a className={`nav-link text-white ${active === "Học phần" ? "active" : ""}`} onClick={handleCourse}>Thông tin học phần</a>
+                            <a className={`nav-link text-white ${active === "Học phần" ? "active" : ""}`} onClick={handleCourse}>Học phần giảng dạy</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-triangle-exclamation text-white"></i>

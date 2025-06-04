@@ -14,6 +14,8 @@ import Lec_info from './Lecturer/Lecturer_info/Lecturer_info';
 import Lec_Schedule from './Lecturer/Schedule/Schedule';
 import Lec_Response from './Lecturer/Response/Response';
 import Hello_Lec from './Lecturer/Hello_Lec/Hello_Lec';
+import Course_info_lec from './Lecturer/Course_info/Course_info';
+import ManageMarks from './Lecturer/Course_info/ManageMarks';
 
 import Home_Admin from './Admin/Home/Home_Admin';
 import Manage_Course from './Admin/Manage_Course/Manage_Course';
@@ -47,6 +49,8 @@ function App() {
             <Route path='Lecturer_info' element={<Lec_info/>}></Route>
             <Route path='Schedule' element={<Lec_Schedule/>}></Route>
             <Route path='Response' element={<Lec_Response/>}></Route>
+            <Route path='Course' element={<Course_info_lec/>}></Route>
+            <Route path='Marks' element={<ManageMarks/>}></Route>
           </Route>
 
           <Route path='/Home_Admin' element={<Home_Admin/>}>
