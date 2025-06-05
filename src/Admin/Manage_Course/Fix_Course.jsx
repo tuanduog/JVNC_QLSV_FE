@@ -52,7 +52,7 @@ function Fix_Course() {
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Mã học phần:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" value={mahp} onChange={(e) => setMahp(e.target.value)}/>
+                <input type="text" className="form-control" value={mahp} onChange={(e) => setMahp(e.target.value)} readOnly/>
                 </div>
             </div>
 

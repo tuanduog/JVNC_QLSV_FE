@@ -14,8 +14,8 @@ function Add_SinhVien() {
     const [quequan, setQuequan] = useState("");
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
-    const [lop, setLop] = useState("");
-    const [khoa, setKhoa] = useState("");
+    const [lop, setLop] = useState("lp01");
+    const [nganh, setNganh] = useState("CNTT");
     const handleRefresh = () => {
         setMasv("");
         setHovaten("");
@@ -26,11 +26,11 @@ function Add_SinhVien() {
         setSodt("");
         setEmail("");
         setLop("");
-        setKhoa("");
+        setNganh("");
     }
     const handleAdd = async () => {
         const new_sv = {masv: masv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, 
-            email: email, matkhau: matkhau, malop: lop, makhoa: khoa, quyen_nd: "ROLE_SINHVIEN"}
+            email: email, matkhau: matkhau, malop: lop, manganh: nganh, quyen_nd: "ROLE_SINHVIEN"}
         console.log(new_sv);
         try {
             const res = await axios.post("http://localhost:8080/auth/add-sinhvien", new_sv,
@@ -125,18 +125,40 @@ function Add_SinhVien() {
 
             {/* Lớp */}
             <div className="mb-3 row">
-                <label className="col-sm-4 col-form-label fw-bold">Lớp:</label>
-                <div className="col-sm-8">
-                <input type="text" className="form-control" value={lop} onChange={(e) => setLop(e.target.value)}/>
-                </div>
+            <label className="col-sm-4 col-form-label fw-bold">Lớp:</label>
+            <div className="col-sm-8">
+                <select
+                    className="form-select"
+                    value={lop}
+                    onChange={(e) => setLop(e.target.value)}
+                >
+                <option value="lp01">lp01</option>
+                <option value="lp02">lp02</option>
+                <option value="lp03">lp03</option>
+                <option value="lp04">lp04</option>
+                <option value="lp05">lp05</option>
+                </select>
+            </div>
             </div>
 
-            {/* Khoa */}
-            <div className="mb-4 row">
-                <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
-                <div className="col-sm-8">
-                <input type="text" className="form-control" value={khoa} onChange={(e) => setKhoa(e).target.value}/>
-                </div>
+            <div className="mb-3 row">
+            <label className="col-sm-4 col-form-label fw-bold">Ngành:</label>
+            <div className="col-sm-8">
+                <select
+                    className="form-select"
+                    value={nganh}
+                    onChange={(e) => setNganh(e.target.value)}
+                >
+                <option value="CNTT">CNTT</option>
+                <option value="KHMT">KHMT</option>
+                <option value="HTTT">HTTT</option>
+                <option value="KTPM">KTPM</option>
+                <option value="ATTT">ATTT</option>
+                <option value="CNDPT">CNDPT</option>
+                <option value="KT">KT</option>
+                <option value="TCDN">TCDN</option>
+                </select>
+            </div>
             </div>
 
             {/* Buttons */}

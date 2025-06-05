@@ -155,7 +155,7 @@ function Manage_SinhVien(){
                         <th>Số điện thoại</th>
                         <th>Email</th>
                         <th>Lớp</th>
-                        <th>Khoa</th>
+                        <th>Ngành</th>
                         <th>Lựa chọn</th>
                     </tr>
                 </thead>
@@ -171,7 +171,7 @@ function Manage_SinhVien(){
                             <td style={{paddingTop: '11px'}}>{sv.sodienthoai}</td>
                             <td style={{paddingTop: '11px'}}>{sv.email}</td>
                             <td style={{paddingTop: '11px'}}>{sv.malop}</td>
-                            <td style={{paddingTop: '11px'}}>{sv.makhoa}</td>
+                            <td style={{paddingTop: '11px'}}>{sv.manganh}</td>
                             <td>
                                 <button className="btn btn-warning btn-sm me-2" onClick={() => handleFix(sv)}>Sửa</button>
                                 <button className="btn btn-danger btn-sm" onClick={() => handleDelete(sv.masv)}>Xóa</button>

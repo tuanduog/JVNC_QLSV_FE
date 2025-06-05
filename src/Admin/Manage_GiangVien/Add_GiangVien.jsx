@@ -15,7 +15,6 @@ function Add_GiangVien() {
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
     const [khoa, setKhoa] = useState("");
-    const [hocphan, setHocphan] = useState("");
     const handleRefresh = () => {
         setMagv("");
         setHovaten("");
@@ -26,20 +25,18 @@ function Add_GiangVien() {
         setSodt("");
         setEmail("");
         setKhoa("");
-        setHocphan("");
     }
     const handleAdd = async () => {
         const new_gv = {magv: magv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, 
-            email: email, matkhau: matkhau, makhoa: khoa, mahp: hocphan, quyen_nd: "ROLE_SINHVIEN"}
+            email: email, matkhau: matkhau, makhoa: khoa, quyen_nd: "ROLE_GIANGVIEN"}
         console.log(new_gv);
         try {
             const res = await axios.post("http://localhost:8080/auth/add-giangvien", new_gv,
                 {
-                    headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
-                    "Content-Type": "application/json"
+                    headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
                 }
             )
-            console.log(res);
+            console.log(res.data);
             alert("Thêm giảng viên thành công");
         } catch (err){
             alert(err.response?.data);
@@ -122,20 +119,21 @@ function Add_GiangVien() {
                 </div>
             </div>
 
-            {/* Lớp */}
-            <div className="mb-3 row">
-                <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
-                <div className="col-sm-8">
-                <input type="text" className="form-control" value={khoa} onChange={(e) => setKhoa(e.target.value)}/>
-                </div>
-            </div>
-
             {/* Khoa */}
-            <div className="mb-4 row">
-                <label className="col-sm-4 col-form-label fw-bold">Học phần:</label>
-                <div className="col-sm-8">
-                <input type="text" className="form-control" value={hocphan} onChange={(e) => setHocphan(e).target.value}/>
-                </div>
+            <div className="mb-3 row">
+            <label className="col-sm-4 col-form-label fw-bold">Ngành:</label>
+            <div className="col-sm-8">
+                <select
+                    className="form-select"
+                    value={khoa}
+                    onChange={(e) => setKhoa(e.target.value)}
+                >
+                <option value="CNTT">CNTT</option>
+                <option value="KTKT">KTKT</option>
+                <option value="CKOT">CKOT</option>
+                <option value="DT">DT</option>
+                </select>
+            </div>
             </div>
 
             {/* Buttons */}

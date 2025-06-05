@@ -13,6 +13,7 @@ const Student_info = () => {
     const [sodt, setSodt] = useState("");
     const [ngaySinh, setNgaySinh] = useState("");
     const [email, setEmail] = useState("");
+    const [hovaten, setHovaten] = useState("");
 
     const handleFix = async () => {
         setShow("Cập nhật");
@@ -22,17 +23,16 @@ const Student_info = () => {
     }
 
     const handleUpdate = async () => {
-        const new_info = {gioitinh: gioiTinh, quequan: queQuan, sodienthoai: sodt, ngaysinh:ngaySinh, email: email};
+        const new_info = {hovaten: hovaten, gioitinh: gioiTinh, quequan: queQuan, sodienthoai: sodt, ngaysinh:ngaySinh, email: email};
         
-        const res = await axios.put(`http://localhost:8080/auth/update-sinhvien/${userInfo.masv}`, new_info,
+        await axios.put(`http://localhost:8080/auth/update-sinhvien/${userInfo.masv}`, new_info,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         );
-        console.log(res.data);
         alert("Chỉnh sửa thông tin thành công!");
+        setShow("Chỉnh sửa");
+        fetchUser();
     }
-
-    useEffect(() => {
-        const fetchUser = async () => {
+    const fetchUser = async () => {
             const res = await axios.get("http://localhost:8080/auth/user-info",
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             );
@@ -42,7 +42,10 @@ const Student_info = () => {
             setSodt(res.data.sodienthoai);
             setNgaySinh(res.data.ngaysinh);
             setEmail(res.data.email);
+            setHovaten(res.data.hovaten);
         }
+
+    useEffect(() => {
         fetchUser();
     }, []);
 
@@ -64,7 +67,7 @@ const Student_info = () => {
                         <div className="about">
                             <p>Mã sinh viên: {userInfo.masv}</p>
                             <p>Lớp: {userInfo.malop}</p>
-                            <p>Khoa: {userInfo.makhoa}</p>
+                            <p>Ngành: {userInfo.manganh}</p>
                         </div>
                     </div>
                     </div>
@@ -125,6 +128,16 @@ const Student_info = () => {
                             </div>
                         ) : (
                             <div>
+                                <div className="row mb-3 align-items-center" style={{width: '100%'}}>
+                                    <div className="col-5">
+                                        <label>Họ và tên: </label>
+                                    </div>
+                                    <div className="col-7">
+                                        <input type="text" className="form-control" id="website" placeholder=""
+                                        value={hovaten} onChange={(e) => setHovaten(e.target.value)}/>
+                                    </div> 
+                                </div>
+                                <hr></hr>
                                 <div className="row mb-3 align-items-center" style={{width: '100%'}}>
                                     <div className="col-5">
                                         <label>Giới tính: </label>

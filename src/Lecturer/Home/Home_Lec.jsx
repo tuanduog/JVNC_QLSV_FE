@@ -65,7 +65,7 @@ const Home_Lec = () => {
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-calendar text-white"></i>
-                            <a className={`nav-link text-white ${active === "Thời khóa biểu" ? "active" : ""}`} onClick={handleSchedule}>Thời khóa biểu</a>
+                            <a className={`nav-link text-white ${active === "Thời khóa biểu" ? "active" : ""}`} onClick={handleSchedule}>Lịch giảng dạy</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-book text-white"></i>

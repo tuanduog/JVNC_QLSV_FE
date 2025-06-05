@@ -47,7 +47,7 @@ function Schedule() {
     },[]);
     return (
         <div className="container mt-4">
-        <h4 className="mb-3">Thời khóa biểu</h4>
+        <h4 className="mb-3">Lịch giảng dạy</h4>
         <table className="table table-bordered text-center align-middle">
             <thead className="table-light">
             <tr>

@@ -13,6 +13,7 @@ const Student_info = () => {
     const [sodt, setSodt] = useState("");
     const [ngaySinh, setNgaySinh] = useState("");
     const [email, setEmail] = useState("");
+    const [hovaten, setHovaten] = useState("");
 
     const handleFix = async () => {
         setShow("Cập nhật");
@@ -22,7 +23,7 @@ const Student_info = () => {
     }
 
     const handleUpdate = async () => {
-        const new_info = {gioitinh: gioiTinh, quequan: queQuan, ngaysinh: ngaySinh, sodienthoai: sodt, email: email};
+        const new_info = {hovaten: hovaten, gioitinh: gioiTinh, quequan: queQuan, ngaysinh: ngaySinh, sodienthoai: sodt, email: email};
 
         const res = await axios.put(`http://localhost:8080/auth/update-giangvien/${userInfo.magv}`, new_info,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
@@ -43,7 +44,7 @@ const Student_info = () => {
             setSodt(res.data.sodienthoai);
             setNgaySinh(res.data.ngaysinh);
             setEmail(res.data.email);
-            
+            setHovaten(res.data.hovaten);
         }
 
     useEffect(() => {
@@ -128,6 +129,16 @@ const Student_info = () => {
                             </div>
                         ) : (
                             <div>
+                                <div className="row mb-3 align-items-center" style={{width: '100%'}}>
+                                    <div className="col-5">
+                                        <label>Họ và tên: </label>
+                                    </div>
+                                    <div className="col-7">
+                                        <input type="text" className="form-control" id="website" placeholder=""
+                                        value={hovaten} onChange={(e) => setHovaten(e.target.value)}/>
+                                    </div>
+                                </div>
+                                <hr></hr>
                                 <div className="row mb-3 align-items-center" style={{width: '100%'}}>
                                     <div className="col-5">
                                         <label>Giới tính: </label>

@@ -128,11 +128,7 @@ function Manage_GiangVien(){
             >
                 <option value="all">Tất cả</option>
                 <option value="CNTT">CNTT</option>
-                <option value="KTPM">KTPM</option>
-                <option value="HTTT">HTTT</option>
-                <option value="KHMT">KHMT</option>
-                <option value="MANG">MANG</option>
-                <option value="ANM">ANM</option>
+                <option value="KTKT">KTKT</option>
             </select>
 
             <button onClick={handleChose}>
@@ -176,7 +172,7 @@ function Manage_GiangVien(){
             </table>
 
             <div className="text-center my-4">
-                <button className="btn btn-primary px-4" style={{width: '500px'}} onClick={handleAdd}>Thêm sinh viên mới</button>
+                <button className="btn btn-primary px-4" style={{width: '500px'}} onClick={handleAdd}>Thêm giảng viên mới</button>
             </div>
 
             <nav className="d-flex justify-content-center">

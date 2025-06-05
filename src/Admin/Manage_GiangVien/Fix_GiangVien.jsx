@@ -17,8 +17,6 @@ function Fix_GiangVien() {
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
     const [khoa, setKhoa] = useState("");
-    const [hocphan, setHocphan] = useState("");
-    console.log(gv.ngaysinh);
     const handleRefresh = () => {
         setMagv("");
         setHovaten("");
@@ -28,18 +26,16 @@ function Fix_GiangVien() {
         setSodt("");
         setEmail("");
         setKhoa("");
-        setHocphan("");
     }
     const handleUpdate = async () => {
         const update_gv = {hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email
-            , makhoa: khoa, mahp: hocphan
+            , makhoa: khoa
         };
 
-        const res = await axios.post(`http://localhost:8080/auth/adm-update-gv/${magv}`, update_gv,
+        await axios.post(`http://localhost:8080/auth/adm-update-gv/${magv}`, update_gv,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
-        console.log(res);
-        alert("Chỉnh sửa sinh viên thành công");
+        alert("Chỉnh sửa giảng viên thành công");
     }
     const fetchSinhVien = () => {
         setMagv(gv.magv);
@@ -50,7 +46,6 @@ function Fix_GiangVien() {
         setSodt(gv.sodienthoai);
         setEmail(gv.email);
         setKhoa(gv.makhoa);
-        setHocphan(gv.mahp);
     }
     useEffect(() => {
         fetchSinhVien();
@@ -58,12 +53,12 @@ function Fix_GiangVien() {
     return (
         <div className="container mt-3">
         <div className="card shadow rounded p-4">
-            <h4 className="mb-4 text-primary">Chỉnh sửa thông tin sinh viên</h4>
+            <h4 className="mb-4 text-primary">Chỉnh sửa thông tin giảng viên</h4>
             {/* Mã sinh viên */}
             <div className="mb-3 row">
                 <label className="col-sm-4 col-form-label fw-bold">Mã sinh viên:</label>
                 <div className="col-sm-8">
-                <input type="text" className="form-control" value={magv} onChange={(e) => setMagv(e.target.value)}/>
+                <input type="text" className="form-control" value={magv} onChange={(e) => setMagv(e.target.value)} readOnly/>
                 </div>
             </div>
 
@@ -128,20 +123,21 @@ function Fix_GiangVien() {
                 </div>
             </div>
 
-            {/* Lớp */}
-            <div className="mb-3 row">
-                <label className="col-sm-4 col-form-label fw-bold">Lớp:</label>
-                <div className="col-sm-8">
-                <input type="text" className="form-control" value={khoa} onChange={(e) => setKhoa(e.target.value)}/>
-                </div>
-            </div>
-
             {/* Khoa */}
-            <div className="mb-4 row">
-                <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
-                <div className="col-sm-8">
-                <input type="text" className="form-control" value={hocphan} onChange={(e) => setHocphan(e.target.value)}/>
-                </div>
+            <div className="mb-3 row">
+            <label className="col-sm-4 col-form-label fw-bold">Khoa:</label>
+            <div className="col-sm-8">
+                <select
+                    className="form-select"
+                    value={khoa}
+                    onChange={(e) => setKhoa(e.target.value)}
+                >
+                <option value="CNTT">CNTT</option>
+                <option value="KTKT">KTKT</option>
+                <option value="CKOT">CKOT</option>
+                <option value="DT">DT</option>
+                </select>
+            </div>
             </div>
 
             {/* Buttons */}
