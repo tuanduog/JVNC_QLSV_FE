@@ -23,18 +23,16 @@ function Course_info(){
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setHocPhan(res1.data);
-
         const promises = res1.data.map(async (hp) => {
-        const mahp = hp.hocPhan.mahp;
-
-        const res2 = await axios.get(`http://localhost:8080/auth/get-sinhvien-in-hocphan/${mahp}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
-        return {
-            mahp: mahp,
-            sinhviens: res2.data,
-            soluong: res2.data.length
-        };
+            const mahp = hp.hocPhan.mahp;
+            const res2 = await axios.get(`http://localhost:8080/auth/get-sinhvien-in-hocphan/${mahp}`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+            });
+            return {
+                mahp: mahp,
+                sinhviens: res2.data,
+                soluong: res2.data.length
+            };
         });
 
         const results = await Promise.all(promises);
