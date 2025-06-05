@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
@@ -7,10 +7,12 @@ import { useLocation } from "react-router-dom";
 function Manage_GiangVien(){
     const [giangvien, setGiangVien] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemPerPage = 10;
+    const itemPerPage = 8;
     const navigate = useNavigate();
     const location = useLocation();
     const userInfo = location.state?.userInfo;
+    const [selectedValue, setSelectedValue] = useState("all");
+    const refSelected = useRef();
     const handleDelete = async (magv) => {
         const res = await axios.post(`http://localhost:8080/auth/delete-giangvien/${magv}`, {},
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
@@ -45,10 +47,14 @@ function Manage_GiangVien(){
         fetchGiangVien();
     },[]);
     // logic phan trang
-    const totalPages = Math.ceil(giangvien.length / itemPerPage);
+    const handleChose = () => {
+        setSelectedValue(refSelected.current.value);
+    }
+    const filterGiangVien = selectedValue === "all" ? giangvien : giangvien.filter((gv) => gv.makhoa === selectedValue);
+    const totalPages = Math.ceil(filterGiangVien.length / itemPerPage);
     const lastIndex = currentPage * itemPerPage;
     const firstIndex = lastIndex - itemPerPage;
-    const currentItem = giangvien.slice(firstIndex, lastIndex);
+    const currentItem = filterGiangVien.slice(firstIndex, lastIndex);
 
     const handlePrev = () => {
         if(currentPage > 1){
@@ -117,13 +123,20 @@ function Manage_GiangVien(){
             <select
                 style={{ width: '100px', height: '31px' }}
                 className="ps-1"
+                ref={refSelected}
+                defaultValue="all"
             >
-                <option value="DL01">DL01</option>
-                <option value="DL02">DL02</option>
+                <option value="all">Tất cả</option>
+                <option value="CNTT">CNTT</option>
+                <option value="KTPM">KTPM</option>
+                <option value="HTTT">HTTT</option>
+                <option value="KHMT">KHMT</option>
+                <option value="MANG">MANG</option>
+                <option value="ANM">ANM</option>
             </select>
 
-            <button>
-                Lọc theo lớp
+            <button onClick={handleChose}>
+                Lọc theo khoa
             </button>
             </div>
             <table className="table table-bordered table-hover text-center">
@@ -138,7 +151,6 @@ function Manage_GiangVien(){
                         <th>Số điện thoại</th>
                         <th>Email</th>
                         <th>Khoa</th>
-                        <th>Học phần</th>
                         <th>Lựa chọn</th>
                     </tr>
                 </thead>
@@ -154,7 +166,6 @@ function Manage_GiangVien(){
                         <td style={{paddingTop: '11px'}}>{gv.sodienthoai}</td>
                         <td style={{paddingTop: '11px'}}>{gv.email}</td>
                         <td style={{paddingTop: '11px'}}>{gv.makhoa}</td>
-                        <td style={{paddingTop: '11px'}}>{gv.mahp}</td>
                         <td>
                             <button className="btn btn-warning btn-sm me-2" onClick={() => handleFix(gv)}>Sửa</button>
                             <button className="btn btn-danger btn-sm" onClick={() => handleDelete(gv.magv)}>Xóa</button>

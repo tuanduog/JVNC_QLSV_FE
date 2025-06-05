@@ -38,7 +38,7 @@ const Home_Admin = () => {
         navigate("/");
     }
     return (
-        <div> 
+        <div style={{height: '100vh'}}> 
             <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style={{height: '70px'}}>
                 <div class="container-fluid">
                     <a class="navbar-brand fw-bold ps-3" href="">QUẢN LÝ SINH VIÊN</a>
@@ -51,7 +51,7 @@ const Home_Admin = () => {
                     </div>
                 </div>
             </nav>
-            <div className="d-flex" style={{ height: 'calc(100vh - 70px)' }}>
+            <div className="d-flex" style={{ maxHeight: 'calc(110vh - 70px)', minHeight: 'calc(100vh - 70px)', height: 'auto', overflowY: 'auto' }}>
                 <div className="p-3" style={{width: '250px', minHeight: '100%', backgroundColor: '#0d6efd'}}>
                     <p className="text-white">Tài khoản admin</p>
                     <hr style={{border: '1px solid', color: 'white'}}></hr>

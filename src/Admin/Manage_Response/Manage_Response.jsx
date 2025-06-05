@@ -5,7 +5,7 @@ import { useEffect } from "react";
 function Manage_Response(){
     const [phanhoi, setPhanhoi] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemPerPage = 10;
+    const itemPerPage = 8;
     const handleCheck = async (ph) => {
         const newStatus = ph.trangthai === "Chưa duyệt" ? "Đã duyệt" : "Chưa duyệt";
         const res = await axios.put(`http://localhost:8080/auth/check-phanhoi/${ph.maph}`, 

@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 function Manage_Course(){
     const [hocphan, setHocphan] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemPerPage = 10;
+    const itemPerPage = 8;
     const navigate = useNavigate();
     const location = useLocation();
     const userInfo = location.state?.userInfo;

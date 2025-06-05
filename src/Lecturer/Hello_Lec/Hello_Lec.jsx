@@ -8,8 +8,7 @@ function Hello_Lec() {
   return (
     <div
       style={{
-        minHeight: '88vh',
-        background: "linear-gradient(to right, #74ebd5, #ACB6E5)",
+        minHeight: '80vh',
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -29,7 +28,7 @@ function Hello_Lec() {
         }}
       >
         <h2 style={{ color: "#333", marginBottom: "20px" }}>
-          Chào mừng trở lại 👋
+          Chào mừng trở lại
         </h2>
         <h3 style={{ color: "#007BFF", fontSize: "28px" }}>
           👨‍🎓 {userInfo?.hovaten || "Người dùng"}

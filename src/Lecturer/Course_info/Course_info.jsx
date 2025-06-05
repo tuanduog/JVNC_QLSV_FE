@@ -66,8 +66,8 @@ function Course_info(){
                             <td>{hp.hocPhan.mahp}</td>
                             <td>{hp.hocPhan.sotc}</td>
                             <td>{dssv[index]?.soluong || 0}</td>
-                            <td><a style={{color: 'blue', textDecorationLine: 'underline', cursor: 'pointer'}}
-                            onClick={() => handleQLDiem(dssv[index])}>Quản lý điểm</a></td>
+                            <td><button
+                            onClick={() => handleQLDiem(dssv[index])}>Quản lý điểm</button></td>
                         </tr>
                     ))}
                 </tbody>

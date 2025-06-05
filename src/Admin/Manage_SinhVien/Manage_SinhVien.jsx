@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import { format } from "date-fns";
@@ -8,10 +8,12 @@ import { useLocation } from "react-router-dom";
 function Manage_SinhVien(){
     const [sinhVien, setSinhVien] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemPerPage = 10;
+    const itemPerPage = 8;
     const navigate = useNavigate();
     const location = useLocation();
     const userInfo = location.state?.userInfo;
+    const [selectedValue, setSelectedValue] = useState("all");
+    const refSelected = useRef();
     const handleFix = (sv) => {
         navigate("/Home_Admin/Fix_SinhVien", {
             state: {
@@ -48,10 +50,16 @@ function Manage_SinhVien(){
         fetchSinhVien();
     },[]);
 
-    const totalPages = Math.ceil(sinhVien.length / itemPerPage);
+    const handleChose = () => {
+        setSelectedValue(refSelected.current.value);
+    }
+    const filteredSinhVien = selectedValue === 'all' 
+    ? sinhVien 
+    : sinhVien.filter((sv) => sv.malop === selectedValue);
+    const totalPages = Math.ceil(filteredSinhVien.length / itemPerPage);
     const lastIndex = currentPage * itemPerPage;
     const firstIndex = lastIndex - itemPerPage;
-    const currentItem = sinhVien.slice(firstIndex, lastIndex);
+    const currentItem = filteredSinhVien.slice(firstIndex, lastIndex);
 
     const handlePrev = () => {
         if(currentPage > 1){
@@ -119,12 +127,19 @@ function Manage_SinhVien(){
             <select
                 style={{ width: '100px', height: '31px' }}
                 className="ps-1"
+                ref={refSelected}
+                defaultValue="all"
             >
-                <option value="DL01">DL01</option>
-                <option value="DL02">DL02</option>
+                <option value="all">Tất cả</option>
+                <option value="lp01">lp01</option>
+                <option value="lp02">lp02</option>
+                <option value="lp03">lp03</option>
+                <option value="lp04">lp04</option>
+                <option value="lp05">lp05</option>
+                <option value="lp06">lp06</option>
             </select>
 
-            <button>
+            <button onClick={handleChose}>
                 Lọc theo lớp
             </button>
             </div>
