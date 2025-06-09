@@ -19,13 +19,13 @@ function Course_info(){
 
     const fetchHPAndSV = async () => {
     try {
-        const res1 = await axios.get(`http://localhost:8080/auth/getAll-hocphan/${magv}`, {
+        const res1 = await axios.get(`http://api.student-management.io.vn/auth/getAll-hocphan/${magv}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setHocPhan(res1.data);
         const promises = res1.data.map(async (hp) => {
             const mahp = hp.hocPhan.mahp;
-            const res2 = await axios.get(`http://localhost:8080/auth/get-sinhvien-in-hocphan/${mahp}`, {
+            const res2 = await axios.get(`http://api.student-management.io.vn/auth/get-sinhvien-in-hocphan/${mahp}`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
             return {

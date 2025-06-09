@@ -16,7 +16,7 @@ const Login = () => {
     
     try {
         const user = { tendn: tendn, matkhau: matkhau, remember: remember };
-        const res = await axios.post("http://localhost:8080/auth/login", user);
+        const res = await axios.post("http://api.student-management.io.vn/auth/login", user);
         console.log("Token nhận được:", res.data.token);
         const userInfo = jwtDecode(res.data.token);
         // console.log(userInfo.sub);

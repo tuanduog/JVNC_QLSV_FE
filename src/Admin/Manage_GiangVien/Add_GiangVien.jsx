@@ -31,7 +31,7 @@ function Add_GiangVien() {
             email: email, matkhau: matkhau, makhoa: khoa, quyen_nd: "ROLE_GIANGVIEN"}
         console.log(new_gv);
         try {
-            const res = await axios.post("http://localhost:8080/auth/add-giangvien", new_gv,
+            const res = await axios.post("http://api.student-management.io.vn/auth/add-giangvien", new_gv,
                 {
                     headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
                 }

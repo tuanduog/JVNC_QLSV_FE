@@ -32,7 +32,7 @@ function Fix_GiangVien() {
             , makhoa: khoa
         };
 
-        await axios.post(`http://localhost:8080/auth/adm-update-gv/${magv}`, update_gv,
+        await axios.post(`http://api.student-management.io.vn/auth/adm-update-gv/${magv}`, update_gv,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         alert("Chỉnh sửa giảng viên thành công");

@@ -25,7 +25,7 @@ const Student_info = () => {
     const handleUpdate = async () => {
         const new_info = {hovaten: hovaten, gioitinh: gioiTinh, quequan: queQuan, ngaysinh: ngaySinh, sodienthoai: sodt, email: email};
 
-        const res = await axios.put(`http://localhost:8080/auth/update-giangvien/${userInfo.magv}`, new_info,
+        const res = await axios.put(`http://api.student-management.io.vn/auth/update-giangvien/${userInfo.magv}`, new_info,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         console.log(res.data)
@@ -35,7 +35,7 @@ const Student_info = () => {
     }
 
     const fetchUser = async () => {
-            const res = await axios.get("http://localhost:8080/auth/user-info",
+            const res = await axios.get("http://api.student-management.io.vn/auth/user-info",
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             );
             setUserInfo(res.data);

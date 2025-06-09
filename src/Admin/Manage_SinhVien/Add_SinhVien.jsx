@@ -33,7 +33,7 @@ function Add_SinhVien() {
             email: email, matkhau: matkhau, malop: lop, manganh: nganh, quyen_nd: "ROLE_SINHVIEN"}
         console.log(new_sv);
         try {
-            const res = await axios.post("http://localhost:8080/auth/add-sinhvien", new_sv,
+            const res = await axios.post("http://api.student-management.io.vn/auth/add-sinhvien", new_sv,
                 {
                     headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
                     "Content-Type": "application/json"
