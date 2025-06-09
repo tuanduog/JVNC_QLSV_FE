@@ -14,14 +14,19 @@ function Manage_GiangVien(){
     const [selectedValue, setSelectedValue] = useState("all");
     const refSelected = useRef();
     const handleDelete = async (magv) => {
-        const res = await axios.post(`http://localhost:8080/auth/delete-giangvien/${magv}`, {},
-            {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
-        );
-        if(res){
-            alert("Xóa giảng viên thành công!");
-            fetchGiangVien();
+        const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa giảng viên này khỏi hệ thống?");
+        if (confirmLogout) {
+            const res = await axios.post(`http://localhost:8080/auth/delete-giangvien/${magv}`, {},
+                {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+            );
+            if(res){
+                alert("Xóa giảng viên thành công!");
+                fetchGiangVien();
+            } else {
+                alert("Xóa sinh viên thất bại!");
+            }
         } else {
-            alert("Xóa sinh viên thất bại!");
+            console.log("Không xóa");
         }
     }
 

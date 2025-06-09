@@ -34,8 +34,13 @@ const Home_Admin = () => {
     const handleLogout = async (e) => {
         e.preventDefault();
         setActive("Đăng xuất");
-        localStorage.removeItem("token");
-        navigate("/");
+        const confirmLogout = window.confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?");
+        if (confirmLogout) {
+            localStorage.removeItem("token");
+            navigate("/");
+        } else {
+            console.log("Hủy đăng xuất");
+        }
     }
     return (
         <div style={{height: '100vh'}}> 

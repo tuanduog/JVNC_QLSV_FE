@@ -12,14 +12,19 @@ function Manage_Course(){
     const location = useLocation();
     const userInfo = location.state?.userInfo;
     const handleDelete = async (mahp) => {
-        try {
-            const res = await axios.post(`http://localhost:8080/auth/delete-hocphan/${mahp}`, {},
-            {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
-            )
-            alert(res.data);
-            fetchHocphan();
-        } catch (error) {
-            alert(error.res.data);
+        const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa học phần này khỏi hệ thống?");
+        if (confirmLogout) {
+            try {
+                const res = await axios.post(`http://localhost:8080/auth/delete-hocphan/${mahp}`, {},
+                {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+                )
+                alert(res.data);
+                fetchHocphan();
+            } catch (error) {
+                alert(error.res.data);
+            }
+        } else {
+            console.log("Không xóa");
         }
     }
     const handleFix = async (hp) => {

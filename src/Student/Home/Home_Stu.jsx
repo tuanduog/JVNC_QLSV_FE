@@ -34,8 +34,14 @@ const Home_Stu = () => {
     const handleLogout = async (e) => {
         e.preventDefault();
         setActive("Đăng xuất");
-        localStorage.removeItem("token");
-        navigate("/");
+        setActive("Đăng xuất");
+        const confirmLogout = window.confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?");
+        if (confirmLogout) {
+            localStorage.removeItem("token");
+            navigate("/");
+        } else {
+            console.log("Hủy đăng xuất");
+        }
     }
 
     // useEffect(() => {
@@ -69,7 +75,7 @@ const Home_Stu = () => {
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-user text-white"></i>
-                            <a className={`nav-link text-white ${active === "Thông tin" ? "active": ""}`} onClick={() => handleInfo("/Home_Student/Student_info")}>Thông tin sinh viên</a>
+                            <a className={`nav-link text-white ${active === "Thông tin" ? "active": ""}`} onClick={() => handleInfo("/Home_Student/Student_info")}>Thông tin cá nhân</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-calendar text-white"></i>

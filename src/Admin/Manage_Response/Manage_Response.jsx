@@ -17,14 +17,19 @@ function Manage_Response(){
     }
 
     const handleDelete = async (maph) => {
-        try {
-            const res = await axios.post(`http://localhost:8080/auth/delete-phanhoi/${maph}`, {},
-            {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
-            )
-            alert(res.data);
-            fetchPhanhoi();
-        } catch (error) {
-            alert(error.res.data);
+        const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa phản hồi này khỏi hệ thống?");
+        if (confirmLogout) {
+            try {
+                const res = await axios.post(`http://localhost:8080/auth/delete-phanhoi/${maph}`, {},
+                {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+                )
+                alert(res.data);
+                fetchPhanhoi();
+            } catch (error) {
+                alert(error.res.data);
+            }
+        } else {
+            console.log("Không xóa");
         }
     }
     const fetchPhanhoi = async () => {

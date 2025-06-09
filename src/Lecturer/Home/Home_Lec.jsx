@@ -32,8 +32,13 @@ const Home_Lec = () => {
     }
     const handleLogout = async () => {
         setActive("Đăng xuất");
-        localStorage.removeItem("token");
-        navigate("/");
+        const confirmLogout = window.confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?");
+        if (confirmLogout) {
+            localStorage.removeItem("token");
+            navigate("/");
+        } else {
+            console.log("Hủy đăng xuất");
+        }
     }
     
     return (
@@ -61,7 +66,7 @@ const Home_Lec = () => {
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-user text-white"></i>
-                            <a className={`nav-link text-white ${active === "Thông tin" ? "active" : ""}`} onClick={handleInfo}>Thông tin giảng viên</a>
+                            <a className={`nav-link text-white ${active === "Thông tin" ? "active" : ""}`} onClick={handleInfo}>Thông tin cá nhân</a>
                         </li>
                         <li className="nav-item d-flex align-items-center mb-2">
                             <i class="fa-solid fa-calendar text-white"></i>

@@ -29,14 +29,19 @@ function Manage_SinhVien(){
         fetchSinhVien();
     }
     const handleDelete = async (masv) => {
-        const res = await axios.post(`http://localhost:8080/auth/delete-sinhvien/${masv}`,{}, 
+        const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa sinh viên này khỏi hệ thống?");
+        if (confirmLogout) {
+            const res = await axios.post(`http://localhost:8080/auth/delete-sinhvien/${masv}`,{}, 
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
-        );
-        if(res.data === true){
-            alert("Xóa sinh viên thành công");
-            fetchSinhVien();
+            );
+            if(res.data === true){
+                alert("Xóa sinh viên thành công");
+                fetchSinhVien();
+            } else {
+                alert("Xóa sinh viên thất bại!");
+            }
         } else {
-            alert("Xóa sinh viên thất bại!");
+            console.log("Không xóa");
         }
     }   
     const fetchSinhVien = async () => {
