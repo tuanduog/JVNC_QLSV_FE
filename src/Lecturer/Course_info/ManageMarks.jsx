@@ -36,11 +36,11 @@ function ManageMarks() {
     const handleUpdate = async () => {
         try {
             const new_diem = {diemtx1: diemtx1, diemtx2: diemtx2, diemgk: diemgk, diemck: diemck};
-            await axios.put(`http://api.student-management.io.vn/auth/update-diem/${madhp}`, new_diem,
+            await axios.put(`https://api.student-management.io.vn/auth/update-diem/${madhp}`, new_diem,
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             )
             alert("Sửa điểm thành công");
-            const res = await axios.get(`http://api.student-management.io.vn/auth/get-sinhvien-in-hocphan/${mahp}`, {
+            const res = await axios.get(`https://api.student-management.io.vn/auth/get-sinhvien-in-hocphan/${mahp}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
             setDssvState({ sinhviens: res.data });
@@ -53,7 +53,7 @@ function ManageMarks() {
         const promises = dssvState.sinhviens.map(async (sv) => {
         const masv = sv.masv;
 
-        const res = await axios.get(`http://api.student-management.io.vn/auth/get1SinhVien/${masv}`, {
+        const res = await axios.get(`https://api.student-management.io.vn/auth/get1SinhVien/${masv}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         return res.data;

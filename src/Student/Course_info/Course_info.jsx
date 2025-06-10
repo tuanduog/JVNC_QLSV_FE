@@ -8,7 +8,7 @@ function Course_info(){
     const userInfo = location.state?.userInfo;
     const masv = userInfo.sub;
     const fetchDiem = async () => {
-        const res = await axios.get(`http://api.student-management.io.vn/auth/getAll-diemhocphan/${masv}`, 
+        const res = await axios.get(`https://api.student-management.io.vn/auth/getAll-diemhocphan/${masv}`, 
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         );
         setHocPhan(res.data);

@@ -16,7 +16,7 @@ function Manage_GiangVien(){
     const handleDelete = async (magv) => {
         const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa giảng viên này khỏi hệ thống?");
         if (confirmLogout) {
-            const res = await axios.post(`http://api.student-management.io.vn/auth/delete-giangvien/${magv}`, {},
+            const res = await axios.post(`https://api.student-management.io.vn/auth/delete-giangvien/${magv}`, {},
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             );
             if(res){
@@ -43,7 +43,7 @@ function Manage_GiangVien(){
     }
 
     const fetchGiangVien = async () => {
-        const res = await axios.get("http://api.student-management.io.vn/auth/getall-giangvien", 
+        const res = await axios.get("https://api.student-management.io.vn/auth/getall-giangvien", 
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         setGiangVien(res.data);

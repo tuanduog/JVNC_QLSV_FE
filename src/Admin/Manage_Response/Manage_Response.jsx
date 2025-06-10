@@ -8,7 +8,7 @@ function Manage_Response(){
     const itemPerPage = 8;
     const handleCheck = async (ph) => {
         const newStatus = ph.trangthai === "Chưa duyệt" ? "Đã duyệt" : "Chưa duyệt";
-        const res = await axios.put(`http://api.student-management.io.vn/auth/check-phanhoi/${ph.maph}`, 
+        const res = await axios.put(`https://api.student-management.io.vn/auth/check-phanhoi/${ph.maph}`, 
             {trangthai: newStatus},
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
@@ -20,7 +20,7 @@ function Manage_Response(){
         const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa phản hồi này khỏi hệ thống?");
         if (confirmLogout) {
             try {
-                const res = await axios.post(`http://api.student-management.io.vn/auth/delete-phanhoi/${maph}`, {},
+                const res = await axios.post(`https://api.student-management.io.vn/auth/delete-phanhoi/${maph}`, {},
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
                 )
                 alert(res.data);
@@ -33,7 +33,7 @@ function Manage_Response(){
         }
     }
     const fetchPhanhoi = async () => {
-        const res = await axios.get("http://api.student-management.io.vn/auth/get-phanhoi", 
+        const res = await axios.get("https://api.student-management.io.vn/auth/get-phanhoi", 
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         setPhanhoi(res.data);

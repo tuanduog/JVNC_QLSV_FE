@@ -35,7 +35,7 @@ function Fix_SinhVien() {
             , malop: lop, manganh: nganh
         };
 
-        const res = await axios.post(`http://api.student-management.io.vn/auth/adm-update-sv/${masv}`, update_sv,
+        const res = await axios.post(`https://api.student-management.io.vn/auth/adm-update-sv/${masv}`, update_sv,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         console.log(res.data);

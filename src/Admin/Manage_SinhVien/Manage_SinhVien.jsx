@@ -31,7 +31,7 @@ function Manage_SinhVien(){
     const handleDelete = async (masv) => {
         const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa sinh viên này khỏi hệ thống?");
         if (confirmLogout) {
-            const res = await axios.post(`http://api.student-management.io.vn/auth/delete-sinhvien/${masv}`,{}, 
+            const res = await axios.post(`https://api.student-management.io.vn/auth/delete-sinhvien/${masv}`,{}, 
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             );
             if(res.data === true){
@@ -45,7 +45,7 @@ function Manage_SinhVien(){
         }
     }   
     const fetchSinhVien = async () => {
-        const res = await axios.get("http://api.student-management.io.vn/auth/getall-sinhvien", 
+        const res = await axios.get("https://api.student-management.io.vn/auth/getall-sinhvien", 
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         setSinhVien(res.data);

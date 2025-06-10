@@ -15,7 +15,7 @@ function Manage_Course(){
         const confirmLogout = window.confirm("Bạn có chắc chắn muốn xóa học phần này khỏi hệ thống?");
         if (confirmLogout) {
             try {
-                const res = await axios.post(`http://api.student-management.io.vn/auth/delete-hocphan/${mahp}`, {},
+                const res = await axios.post(`https://api.student-management.io.vn/auth/delete-hocphan/${mahp}`, {},
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
                 )
                 alert(res.data);
@@ -45,7 +45,7 @@ function Manage_Course(){
     }
 
     const fetchHocphan = async () => {
-        const res = await axios.get("http://api.student-management.io.vn/auth/getall-hocphan", 
+        const res = await axios.get("https://api.student-management.io.vn/auth/getall-hocphan", 
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         console.log(res.data);

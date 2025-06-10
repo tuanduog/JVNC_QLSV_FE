@@ -18,7 +18,7 @@ function Add_Course() {
         const new_hp = {mahp: mahp, tenhp: tenhp, sotc: sotc, ngayhoc: ngayhoc, phonghoc: phonghoc, cahoc: cahoc};
         console.log(new_hp);
         try {
-            const res = await axios.post("http://api.student-management.io.vn/auth/add-hocphan", new_hp,
+            const res = await axios.post("https://api.student-management.io.vn/auth/add-hocphan", new_hp,
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             )
             console.log(res.data);

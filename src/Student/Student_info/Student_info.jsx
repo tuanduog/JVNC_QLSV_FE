@@ -25,7 +25,7 @@ const Student_info = () => {
     const handleUpdate = async () => {
         const new_info = {hovaten: hovaten, gioitinh: gioiTinh, quequan: queQuan, sodienthoai: sodt, ngaysinh:ngaySinh, email: email};
         
-        await axios.put(`http://api.student-management.io.vn/auth/update-sinhvien/${userInfo.masv}`, new_info,
+        await axios.put(`https://api.student-management.io.vn/auth/update-sinhvien/${userInfo.masv}`, new_info,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         );
         alert("Chỉnh sửa thông tin thành công!");
@@ -33,7 +33,7 @@ const Student_info = () => {
         fetchUser();
     }
     const fetchUser = async () => {
-            const res = await axios.get("http://api.student-management.io.vn/auth/user-info",
+            const res = await axios.get("https://api.student-management.io.vn/auth/user-info",
                 {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
             );
             setUserInfo(res.data);

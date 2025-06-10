@@ -6,7 +6,7 @@ const Response = () => {
     const [phanhoi, setPhanhoi] = useState("");
 
     const handlePost = async () => {
-        const res = await axios.post("http://api.student-management.io.vn/auth/add-phanhoi", {noidung: phanhoi}, 
+        const res = await axios.post("https://api.student-management.io.vn/auth/add-phanhoi", {noidung: phanhoi}, 
             {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
         );
         console.log(res.data);

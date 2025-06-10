@@ -17,7 +17,7 @@ function Schedule() {
     }
 
     const fetchTKB = async () => {
-        const res = await axios.get(`http://api.student-management.io.vn/auth/getAll-hocphan/${magv}`,
+        const res = await axios.get(`https://api.student-management.io.vn/auth/getAll-hocphan/${magv}`,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         )
         const hocPhanList = res.data.map(item => item.hocPhan);
