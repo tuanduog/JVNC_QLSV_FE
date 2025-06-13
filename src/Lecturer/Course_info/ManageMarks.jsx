@@ -34,6 +34,22 @@ function ManageMarks() {
     }
 
     const handleUpdate = async () => {
+        if(diemtx1 < 0 || diemtx1 > 10){
+            alert("Điểm tx1 phải nằm trong khoảng [0, 10]");
+            return;
+        }
+        if(diemtx2 < 0 || diemtx2 > 10){
+            alert("Điểm tx2 phải nằm trong khoảng [0, 10]");
+            return;
+        }
+        if(diemgk < 0 || diemgk > 10){
+            alert("Điểm gk phải nằm trong khoảng [0, 10]");
+            return;
+        }
+        if(diemck < 0 || diemck > 10){
+            alert("Điểm ck phải nằm trong khoảng [0, 10]");
+            return;
+        }
         try {
             const new_diem = {diemtx1: diemtx1, diemtx2: diemtx2, diemgk: diemgk, diemck: diemck};
             await axios.put(`https://api.student-management.io.vn/auth/update-diem/${madhp}`, new_diem,
