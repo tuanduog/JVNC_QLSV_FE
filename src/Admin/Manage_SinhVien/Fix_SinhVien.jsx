@@ -30,7 +30,14 @@ function Fix_SinhVien() {
         setLop("");
         setNganh("");
     }
+    const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
     const handleUpdate = async () => {
+        if(!isValidEmail(email)){
+            alert("Email không hợp lệ. Vui lòng nhập đúng định dạng.");
+            return;
+        }
         const update_sv = {hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email
             , malop: lop, manganh: nganh
         };

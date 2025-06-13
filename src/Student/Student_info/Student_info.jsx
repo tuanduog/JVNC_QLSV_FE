@@ -21,8 +21,14 @@ const Student_info = () => {
     const handleCancle = () => {
         setShow("Chỉnh sửa");
     }
-
+    const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
     const handleUpdate = async () => {
+        if(!isValidEmail(email)){
+            alert("Email không hợp lệ. Vui lòng nhập đúng định dạng.");
+            return;
+        }
         const new_info = {hovaten: hovaten, gioitinh: gioiTinh, quequan: queQuan, sodienthoai: sodt, ngaysinh:ngaySinh, email: email};
         
         await axios.put(`https://api.student-management.io.vn/auth/update-sinhvien/${userInfo.masv}`, new_info,

@@ -110,7 +110,7 @@ function ManageMarks() {
                                 <label>Điểm TX1: </label>
                             </div>
                             <div className="col-7">
-                                <input type="text" className="form-control" id="website" placeholder=""
+                                <input type="number" min="0" max="10" step="0.1" className="form-control" id="website" placeholder=""
                                     value={diemtx1} onChange={(e) => setDiemtx1(e.target.value)}/>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ function ManageMarks() {
                                 <label>Điểm TX2: </label>
                             </div>
                             <div className="col-7">
-                                <input type="text" className="form-control" id="website" placeholder=""
+                                <input type="number" min="0" max="10" step="0.1" className="form-control" id="website" placeholder=""
                                     value={diemtx2} onChange={(e) => setDiemtx2(e.target.value)}/>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ function ManageMarks() {
                                 <label>Điểm giữa kỳ: </label>
                             </div>
                             <div className="col-7">
-                                <input type="text" className="form-control" id="website" placeholder=""
+                                <input type="number" min="0" max="10" step="0.1" className="form-control" id="website" placeholder=""
                                     value={diemgk} onChange={(e) => setDiemgk(e.target.value)}/>
                             </div>
                         </div>
@@ -137,7 +137,7 @@ function ManageMarks() {
                                 <label>Điểm cuối kỳ: </label>
                             </div>
                             <div className="col-7">
-                                <input type="text" className="form-control" id="website" placeholder=""
+                                <input type="number" min="0" max="10" step="0.1" className="form-control" id="website" placeholder=""
                                     value={diemck} onChange={(e) => setDiemck(e.target.value)}/>
                             </div>
                         </div>

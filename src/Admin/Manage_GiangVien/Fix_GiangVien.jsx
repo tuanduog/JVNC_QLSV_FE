@@ -27,7 +27,14 @@ function Fix_GiangVien() {
         setEmail("");
         setKhoa("");
     }
+    const isValidEmail = () => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
     const handleUpdate = async () => {
+        if(!isValidEmail(email)){
+            alert("Email không hợp lệ. Vui lòng nhập đúng định dạng.");
+            return;
+        }
         const update_gv = {hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, email: email
             , makhoa: khoa
         };

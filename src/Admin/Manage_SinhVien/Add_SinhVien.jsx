@@ -16,6 +16,10 @@ function Add_SinhVien() {
     const [email, setEmail] = useState("");
     const [lop, setLop] = useState("lp01");
     const [nganh, setNganh] = useState("CNTT");
+
+    const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
     const handleRefresh = () => {
         setMasv("");
         setHovaten("");
@@ -29,6 +33,10 @@ function Add_SinhVien() {
         setNganh("");
     }
     const handleAdd = async () => {
+        if(!isValidEmail(email)){
+            alert("Email không hợp lệ. Vui lòng nhập đúng định dạng.");
+            return;
+        }
         const new_sv = {masv: masv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, 
             email: email, matkhau: matkhau, malop: lop, manganh: nganh, quyen_nd: "ROLE_SINHVIEN"}
         console.log(new_sv);

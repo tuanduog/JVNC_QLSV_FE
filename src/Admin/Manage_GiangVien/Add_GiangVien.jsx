@@ -26,7 +26,14 @@ function Add_GiangVien() {
         setEmail("");
         setKhoa("");
     }
+    const isValidEmail = () => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
     const handleAdd = async () => {
+        if(!isValidEmail(email)){
+            alert("Email không hợp lệ. Vui lòng nhập đúng định dạng.");
+            return;
+        }
         const new_gv = {magv: magv, hovaten: hovaten, gioitinh: gioitinh, ngaysinh: ngaysinh, quequan: quequan, sodienthoai: sodt, 
             email: email, matkhau: matkhau, makhoa: khoa, quyen_nd: "ROLE_GIANGVIEN"}
         console.log(new_gv);

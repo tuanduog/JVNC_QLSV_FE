@@ -15,6 +15,10 @@ function Add_Course() {
             alert("Số tín chỉ phải là một số nguyên dương!");
             return;
         }
+        if(parsedSotc > 10){
+            alert("Số tín chỉ tối đa là 10");
+            return;
+        }
         const new_hp = {mahp: mahp, tenhp: tenhp, sotc: sotc, ngayhoc: ngayhoc, phonghoc: phonghoc, cahoc: cahoc};
         console.log(new_hp);
         try {

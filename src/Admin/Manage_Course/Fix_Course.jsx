@@ -25,6 +25,15 @@ function Fix_Course() {
     }
 
     const handleUpdate = async () => {
+        const parsedSotc = parseInt(sotc);
+        if(isNaN(parsedSotc) || sotc <= 0){
+            alert("Số tín chỉ phải là số nguyên dương");
+            return;
+        }
+        if(parsedSotc > 10){
+            alert("Số tín chỉ tối đa là 10");
+            return;
+        }
         const new_hp = {tenhp: tenhp, sotc: sotc, ngayhoc: ngayhoc, phonghoc: phonghoc, cahoc: cahoc};
         const res = await axios.post(`https://api.student-management.io.vn/auth/adm-update-hp/${mahp}`, new_hp,
             {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
