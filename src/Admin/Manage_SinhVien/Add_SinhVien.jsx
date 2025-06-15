@@ -17,9 +17,6 @@ function Add_SinhVien() {
     const [lop, setLop] = useState("lp01");
     const [nganh, setNganh] = useState("CNTT");
 
-    const isValidEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
     const handleRefresh = () => {
         setMasv("");
         setHovaten("");
@@ -31,6 +28,9 @@ function Add_SinhVien() {
         setEmail("");
         setLop("");
         setNganh("");
+    }
+    const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
     const handleAdd = async () => {
         if(!isValidEmail(email)){

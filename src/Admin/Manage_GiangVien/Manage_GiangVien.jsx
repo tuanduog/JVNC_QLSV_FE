@@ -134,6 +134,8 @@ function Manage_GiangVien(){
                 <option value="all">Tất cả</option>
                 <option value="CNTT">CNTT</option>
                 <option value="KTKT">KTKT</option>
+                <option value="DT">DT</option>
+                <option value="CKOT">CKOT</option>
             </select>
 
             <button onClick={handleChose}>
