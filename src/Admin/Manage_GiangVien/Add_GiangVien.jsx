@@ -14,7 +14,7 @@ function Add_GiangVien() {
     const [quequan, setQuequan] = useState("");
     const [sodt, setSodt] = useState("");
     const [email, setEmail] = useState("");
-    const [khoa, setKhoa] = useState("");
+    const [khoa, setKhoa] = useState("CNTT");
     const handleRefresh = () => {
         setMagv("");
         setHovaten("");
